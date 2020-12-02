@@ -12,7 +12,7 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 }, {});
 
 module.exports = {
-  entry: './main.js', // defaults to ./src
+  entry: './src/main.js', // defaults to ./src
   output: {
     path: path.resolve(__dirname, 'public'),
     publicPath: '/',
@@ -33,7 +33,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './index.html',
+      template: './src/index.html',
       filename: './index.html',
     }),
     new webpack.DefinePlugin(envKeys),
