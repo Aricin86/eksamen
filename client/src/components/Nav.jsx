@@ -59,14 +59,32 @@ const NavLogInItem = styled.li`
   }
 `;
 
+const Logo = styled.li`
+  padding: 0 20px;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  & > a {
+    color: #333;
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 3.456;
+    padding: 5px 0;
+    text-decoration: none;
+  }
+`;
+
 const Nav = () => (
   <StyledNav>
     <NavMenu>
-      <NavMenuItem>
+      <Logo>
         <NavLink exact to="/" activeClassName="active">
           LG Rørleggerservice AS
         </NavLink>
-      </NavMenuItem>
+      </Logo>
       <NavMenuItem style={{ marginLeft: 'auto' }}>
         <NavLink exact to="/" activeClassName="active">
           Hjem
