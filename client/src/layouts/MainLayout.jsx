@@ -1,27 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Nav from '../components/Nav';
+import Menu from '../components/Menu';
 
-const StyledDiv = styled.div`
+const StyledMain = styled.main`
   margin: 0 auto;
 `;
 
 const StyledHeader = styled.header`
   background: white;
-  margin-bottom: 60px;
+  margin: 0 0 5px 0;
   width: 100%;
 `;
 
 const MainLayout = ({ children }) => (
-  <StyledDiv>
+  <>
     <StyledHeader>
-      <Nav />
+      <Menu />
     </StyledHeader>
-    <StyledDiv w="100%" padding="0 20px" margin="0 auto">
-      {children}
-    </StyledDiv>
-  </StyledDiv>
+    <StyledMain>{children}</StyledMain>
+  </>
 );
 
 MainLayout.propTypes = {
