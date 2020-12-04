@@ -14,4 +14,3 @@ Eksamen i webapplikasjoner 2020
 - webpack.common.config.js
 - webpack.development.config.js
 - webpack.production.config.js
-- yarn.lock

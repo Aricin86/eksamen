@@ -1,7 +1,9 @@
-import React from 'react';
-// import ContactForm from '../components/LoginForm'; // ! Må endres
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { officeData } from '../data/offices';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faThLarge, faThList } from '@fortawesome/free-solid-svg-icons';
+import ListOffices from '../components/ListOffices';
+import CardOffices from '../components/CardOffices';
 
 const Banner = styled.header`
   grid-row: 1;
@@ -18,24 +20,32 @@ const Banner = styled.header`
   }
 `;
 
-const Offices = () => (
-  <>
-    <Banner>
-      <h1>Kontorer</h1>
-    </Banner>
-    {officeData.map((data, i) => (
-      <ul key={i}>
-        <li>
-          Rørlegger {data.place} {data.officenumber}
-        </li>
-        <li>Rørleggerveien {data.officenumber}</li>
-        <li>Tlf. 69 99 00 {data.officenumber}</li>
-        <li>
-          {data.place.toLowerCase()}.{data.locale.toLowerCase()}@lgror.no
-        </li>
-      </ul>
-    ))}
-  </>
-);
+const Offices = () => {
+  const [search, setSearch] = useState('');
+  const searchOffice = (e) => {
+    const keyword = e.target.value;
+    setSearch(keyword);
+  };
+
+  return (
+    <>
+      <Banner>
+        <h1>Kontorer</h1>
+      </Banner>
+      <input type="text" placeholder="Filtrer sted" onChange={searchOffice} />
+      {/* <FontAwesomeIcon icon={faThLarge} size="3x" /> */}
+      {/* <FontAwesomeIcon icon={faThList} size="3x" /> */}
+      <button type="button" onClick={ListOffices}>
+        Liste
+      </button>
+      <button type="button" onClick={CardOffices}>
+        Kort
+      </button>
+      <br />
+      <ListOffices search={search} />
+      <CardOffices search={search} />
+    </>
+  );
+};
 
 export default Offices;

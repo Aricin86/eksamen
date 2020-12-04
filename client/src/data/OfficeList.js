@@ -1,4 +1,4 @@
-export const officeData = [
+export const OfficeList = [
   {
     place: 'Fredrikstad',
     locale: 'Begby',
@@ -39,6 +39,7 @@ export const officeData = [
     locale: 'Sellebakk',
     officenumber: 8,
   },
+
   {
     place: 'Sarpsborg',
     locale: 'Yven',
@@ -64,6 +65,7 @@ export const officeData = [
     locale: 'Skjeberg',
     officenumber: 13,
   },
+
   {
     place: 'Moss',
     locale: 'Kambo',
@@ -84,6 +86,7 @@ export const officeData = [
     locale: 'Hoyden',
     officenumber: 17,
   },
+
   {
     place: 'Oslo',
     locale: 'Frogner',
@@ -101,7 +104,7 @@ export const officeData = [
   },
   {
     place: 'Oslo',
-    locale: 'Gamle Oslo',
+    locale: 'Mortensrud',
     officenumber: 21,
   },
   {

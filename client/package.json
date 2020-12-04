@@ -15,6 +15,7 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "@babel/register": "7.12.1",
+    "@fortawesome/react-fontawesome": "^0.1.13",
     "@webpack-cli/serve": "^1.1.0",
     "axios": "0.21.0",
     "babel-eslint": "^10.1.0",
@@ -46,6 +47,9 @@
   "dependencies": {
     "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@webpack-cli/init": "^1.0.3",
     "emotion-theming": "^10.0.27",
     "prop-types": "^15.7.2",
