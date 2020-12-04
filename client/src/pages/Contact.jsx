@@ -1,6 +1,6 @@
 import React from 'react';
-import ContactForm from '../components/LoginForm'; // ! Må endres
+import ContactForm from '../components/ContactForm';
 
-const Contact = () => <h1>Her kommer kontakt oss</h1>;
+const Contact = () => <ContactForm />;
 
 export default Contact;
