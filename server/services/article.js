@@ -2,7 +2,8 @@ import Article from '../models/article.js';
 
 export const getArticleById = async (id) => Article.findById(id);
 
-export const listArticles = async () => Article.find();
+export const listArticles = async () =>
+  Article.find().populate('admin', 'name');
 
 export const createArticle = async (data) => Article.create(data);
 
@@ -13,7 +14,4 @@ export const updateArticle = async (id, data) =>
     useFindAndModify: false,
   });
 
-export const removeArticle = async (id) => {
-  const article = await Article.findById(id);
-  article.remove();
-};
+export const removeArticle = async (id) => Article.findByIdAndDelete(id);

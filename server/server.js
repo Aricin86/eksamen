@@ -3,6 +3,7 @@ import morgan from 'morgan';
 
 import { PORT } from './constants/index.js';
 import 'dotenv/config.js';
+import errorMiddleware from './middleware/errors.js';
 
 import connectDatabase from './config/db.js';
 import user from './routes/user.js';
@@ -21,11 +22,21 @@ app.use(`${process.env.BASEURL}/users`, user);
 app.use(`${process.env.BASEURL}/categories`, category);
 app.use(`${process.env.BASEURL}/articles`, article);
 
+app.use(errorMiddleware);
+
 connectDatabase();
 
-app.listen(
+const server = app.listen(
   PORT,
   console.log(
     `This server is running in ${process.env.NODE_ENV} mode on port ${PORT}.`
   )
 );
+
+process.on('unhandledRejection', (err) => {
+  console.log(`Error: ${err.message}`);
+  console.log('Shutting down server due to Unhandled Promise Rejection');
+  server.close(() => {
+    process.exit(1);
+  });
+});
