@@ -18,6 +18,12 @@ const Banner = styled.header`
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
+
+  h1 {
+    text-align: center;
+    padding: 160px 0;
+    font-size: 36px;
+  }
 `;
 
 const HomeSections = styled.a`
