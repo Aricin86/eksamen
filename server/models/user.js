@@ -7,15 +7,17 @@ const UserSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, 'Fyll inn navn'],
-      minlength: [3, 'Navnet må være minst tre bokstaver.'],
+      required: true,
+      trim: true,
+      minlength: [3, 'Navnet må være på minst tre bokstaver.'],
+      maxlength: [120, 'Navnet kan ikke på være mer enn 120 bokstaver.'],
     },
     email: {
       type: String,
       required: [true, 'Fyll inn epost'],
       unique: true,
       match: [
-        /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+        /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, // Hentet fra koden til Marius
         'Eposten du oppga er ikke gyldig.',
       ],
     },
@@ -32,6 +34,13 @@ const UserSchema = new Schema(
 UserSchema.pre('save', async function (next) {
   this.password = await argon2.hash(this.password);
   next();
+});
+
+UserSchema.virtual('articles', {
+  ref: 'Article',
+  localField: '_id',
+  foreignField: 'admin',
+  justOne: false,
 });
 
 const User = mongoose.model('User', UserSchema);
