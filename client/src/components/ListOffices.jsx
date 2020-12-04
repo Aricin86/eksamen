@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { OfficeList } from '../data/OfficeList';
 
 const StyledList = styled.ul`
   list-style: none;
   display: flex;
+  padding: 0;
+  align-items: baseline;
 `;
 
 const StyledListItem = styled.li`
-  margin: 5px 25px;
+  padding-left: 20px;
+  display: table-row;
 `;
 
 const StyledTitle = styled.h3`
   margin: 0;
 `;
+
 const ListOffices = ({ search }) =>
   OfficeList.filter((data) => {
     if (search === '') return data;

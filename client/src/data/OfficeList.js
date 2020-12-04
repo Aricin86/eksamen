@@ -73,7 +73,7 @@ export const OfficeList = [
   },
   {
     place: 'Moss',
-    locale: 'Jeloya',
+    locale: 'Refsnes',
     officenumber: 15,
   },
   {
@@ -83,7 +83,7 @@ export const OfficeList = [
   },
   {
     place: 'Moss',
-    locale: 'Hoyden',
+    locale: 'Varnaveien',
     officenumber: 17,
   },
 
