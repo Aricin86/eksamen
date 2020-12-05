@@ -1,5 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 import { PORT } from './constants/index.js';
 import 'dotenv/config.js';
@@ -9,6 +11,7 @@ import connectDatabase from './config/db.js';
 import user from './routes/user.js';
 import category from './routes/category.js';
 import article from './routes/article.js';
+import auth from './routes/auth.js';
 
 const app = express();
 
@@ -17,10 +20,22 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(express.json());
+app.use(express.static(`${__dirname}/public`));
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  })
+);
+
+app.use(cookieParser());
 
 app.use(`${process.env.BASEURL}/users`, user);
 app.use(`${process.env.BASEURL}/categories`, category);
 app.use(`${process.env.BASEURL}/articles`, article);
+app.use(`${process.env.BASEURL}/`, auth);
 
 app.use(errorMiddleware);
 

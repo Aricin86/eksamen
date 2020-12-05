@@ -23,8 +23,13 @@ const ArticleSchema = new Schema(
     },
     author: {
       type: String,
-      required: [true, 'Fyll inn en forfatter'],
-      trim: true,
+      required: [
+        true,
+        'Fyll inn med en av de forhåndsbestemte forfatterne: Lars Larsen, Gunn Gundersen eller Simen Simensen',
+      ],
+      enum: {
+        values: ['Lars Larsen', 'Gunn Gundersen', 'Simen Simensen'],
+      },
     },
     category: {
       type: mongoose.Schema.ObjectId,

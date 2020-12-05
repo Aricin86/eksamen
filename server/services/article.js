@@ -1,9 +1,12 @@
 import Article from '../models/article.js';
 
-export const getArticleById = async (id) => Article.findById(id);
+export const getArticleById = async (id) =>
+  Article.findById(id)
+    .populate('admin', 'name')
+    .populate('category', 'category');
 
 export const listArticles = async () =>
-  Article.find().populate('admin', 'name');
+  Article.find().populate('admin', 'name').populate('category', 'category');
 
 export const createArticle = async (data) => Article.create(data);
 
@@ -14,4 +17,5 @@ export const updateArticle = async (id, data) =>
     useFindAndModify: false,
   });
 
+// Ingen cascading ned fra Aricle og dermed best å bruke findByIdAndDelete()
 export const removeArticle = async (id) => Article.findByIdAndDelete(id);
