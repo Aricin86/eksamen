@@ -4,8 +4,15 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThLarge, faThList } from '@fortawesome/free-solid-svg-icons';
 
+import {
+  BrowserRouter as Router,
+  Route,
+  // useRouteMatch,
+} from 'react-router-dom';
 import ListOffices from '../components/ListOffices';
 import CardOffices from '../components/CardOffices';
+import OfficeDetailed from './OfficeDetailed';
+import { OfficeList } from '../data/OfficeList';
 
 const Banner = styled.header`
   grid-row: 1;
@@ -56,6 +63,7 @@ const Offices = () => {
   const [search, setSearch] = useState('');
   const [list, setList] = useState(false);
   const [card, setCard] = useState(true);
+  // const { path, url } = useRouteMatch();
 
   const searchOffice = (e) => {
     const keyword = e.target.value;
@@ -94,6 +102,11 @@ const Offices = () => {
         {card && <CardOffices search={search} />}
         {list && <ListOffices search={search} />}
       </OfficeSection>
+      {/* <Router> */}
+      {/*  <Route path={`${path}/${OfficeList.officenumber}`}> */}
+      {/*    <OfficeDetailed /> */}
+      {/*  </Route> */}
+      {/* </Router> */}
     </>
   );
 };

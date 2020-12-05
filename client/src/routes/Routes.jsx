@@ -8,6 +8,7 @@ import Offices from '../pages/Offices';
 import Articles from '../pages/Articles';
 import Contact from '../pages/Contact';
 import Login from '../pages/Login';
+// import OfficeDetailed from '../pages/OfficeDetailed';
 
 const Routes = () => (
   <Router>

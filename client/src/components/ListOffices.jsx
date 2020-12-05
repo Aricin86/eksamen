@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useRouteMatch, Link } from 'react-router-dom';
 import { OfficeList } from '../data/OfficeList';
 
-const StyledList = styled.ul`
+const StyledList = styled(Link)`
   list-style: none;
   display: flex;
   padding: 0;
@@ -18,8 +19,10 @@ const StyledTitle = styled.h3`
   margin: 0;
 `;
 
-const ListOffices = ({ search }) =>
-  OfficeList.filter((data) => {
+const ListOffices = ({ search }) => {
+  const { url } = useRouteMatch();
+
+  return OfficeList.filter((data) => {
     if (search === '') return data;
     if (
       data.place.toLowerCase().includes(search) ||
@@ -28,7 +31,7 @@ const ListOffices = ({ search }) =>
       return data;
     }
   }).map((data, i) => (
-    <StyledList key={i}>
+    <StyledList to={`${url}/${data.officenumber}`} key={i}>
       <StyledTitle>
         {data.locale} - {data.place}
       </StyledTitle>
@@ -43,5 +46,6 @@ const ListOffices = ({ search }) =>
       </StyledListItem>
     </StyledList>
   ));
+};
 
 export default ListOffices;

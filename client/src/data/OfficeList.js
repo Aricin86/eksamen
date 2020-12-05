@@ -3,6 +3,7 @@ export const OfficeList = [
     place: 'Fredrikstad',
     locale: 'Begby',
     officenumber: 1,
+    employees: ['A A', 'BB', 'CC'],
   },
   {
     place: 'Fredrikstad',
