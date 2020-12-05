@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import ArticleList from '../components/ArticleList';
 
 const Banner = styled.header`
   grid-row: 1;
@@ -17,15 +16,20 @@ const Banner = styled.header`
   }
 `;
 
-const Articles = () => (
+// Alle disse skal fylles med data fra DB
+const ArticleDetailedView = () => (
   <>
     <Banner>
-      <h1>Fagartikler</h1>
+      <h1>Tittel</h1>
     </Banner>
-
-    {/* // Map gjennom artikler og skriv de ut her */}
-    <ArticleList />
+    <p>Av forfatter</p>
+    <p>Dato</p>
+    <p>Ingress</p>
+    <h2>Undertittel</h2>
+    <p>Innholdstekst</p>
+    <button type="button">SLETT</button>
+    <button type="button">REDIGER</button>
   </>
 );
 
-export default Articles;
+export default ArticleDetailedView;

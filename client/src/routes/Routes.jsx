@@ -8,6 +8,8 @@ import Offices from '../pages/Offices';
 import Articles from '../pages/Articles';
 import Contact from '../pages/Contact';
 import Login from '../pages/Login';
+import CreateArticle from '../pages/CreateArticle';
+import OfficeDetailed from '../pages/OfficeDetailed';
 // import OfficeDetailed from '../pages/OfficeDetailed';
 
 const Routes = () => (
@@ -27,6 +29,12 @@ const Routes = () => (
       </Route>
       <Route path="/login">
         <Login />
+      </Route>
+      <Route path="/ny-artikkel">
+        <CreateArticle />
+      </Route>
+      <Route path="/etkontor">
+        <OfficeDetailed />
       </Route>
       {/* <Route path="*">
         <NoMatch />

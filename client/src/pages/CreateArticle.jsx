@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ArticleList from '../components/ArticleList';
+import ArticleForm from '../components/ArticleForm';
 
 const Banner = styled.header`
   grid-row: 1;
@@ -17,15 +17,13 @@ const Banner = styled.header`
   }
 `;
 
-const Articles = () => (
+const CreateArticle = () => (
   <>
     <Banner>
-      <h1>Fagartikler</h1>
+      <h1>Ny artikkel</h1>
     </Banner>
-
-    {/* // Map gjennom artikler og skriv de ut her */}
-    <ArticleList />
+    <ArticleForm />
   </>
 );
 
-export default Articles;
+export default CreateArticle;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/LoginForm';
 
 const Banner = styled.header`
   grid-row: 1;
@@ -22,6 +22,7 @@ const Login = () => (
     <Banner>
       <h1>Logg inn</h1>
     </Banner>
+    <LoginForm />
   </>
 );
 
