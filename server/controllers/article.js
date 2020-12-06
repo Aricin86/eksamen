@@ -18,13 +18,13 @@ export const list = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const create = catchAsyncErrors(async (req, res, next) => {
-  req.body.user = req.user.id;
+  // req.body.user = req.user.id;
   const article = await articleService.createArticle(req.body);
   res.status(201).json(article);
 });
 
 export const update = catchAsyncErrors(async (req, res, next) => {
-  req.body.user = req.user.id;
+  // req.body.user = req.user.id;
   let article = await articleService.getArticleById(req.params.id);
   if (!article) {
     return next(new ErrorHandler(`${errorMessage} ${req.params.id}`, 404));
@@ -34,7 +34,7 @@ export const update = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const remove = catchAsyncErrors(async (req, res, next) => {
-  req.body.user = req.user.id;
+  // req.body.user = req.user.id;
   let article = await articleService.getArticleById(req.params.id);
   if (!article) {
     return next(new ErrorHandler(`${errorMessage} ${req.params.id}`, 404));
