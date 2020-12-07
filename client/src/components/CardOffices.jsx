@@ -4,7 +4,7 @@ import { useRouteMatch, Link } from 'react-router-dom';
 import { OfficeList } from '../data/OfficeList';
 import OfficeDetailed from '../pages/OfficeDetailed';
 
-const StyledCard = styled(Link)`
+const StyledCard = styled.section`
   list-style: none;
   border: 1px solid black;
   width: 250px;
@@ -17,10 +17,10 @@ const StyledTitle = styled.h3`
   margin: 0;
 `;
 
-const CardOffices = ({ search }) => {
-  const { url } = useRouteMatch();
+const CardOffices = ({ search }) =>
+  // const { url } = useRouteMatch();
 
-  return OfficeList.filter((data) => {
+  OfficeList.filter((data) => {
     if (search === '') return data;
     if (
       data.place.toLowerCase().includes(search) ||
@@ -28,8 +28,8 @@ const CardOffices = ({ search }) => {
     ) {
       return data;
     }
-  }).map((data, i) => (
-    <StyledCard to={`${url}/${data.officenumber}`} key={i}>
+  }).map((data) => (
+    <StyledCard key={data.officenumber}>
       <StyledTitle>{data.place}</StyledTitle>
       <li>Rørlegger {data.locale}</li>
       <li>Rørleggerveien {data.officenumber}</li>
@@ -40,8 +40,9 @@ const CardOffices = ({ search }) => {
       <li>
         {data.place.toLowerCase()}.{data.locale.toLowerCase()}@lgror.no
       </li>
+      <button type="button" as={Link} to={`kontor/${data.officenumber}`}>
+        Mer info
+      </button>
     </StyledCard>
   ));
-};
-
 export default CardOffices;

@@ -1,14 +1,11 @@
 import React from 'react';
-import GlobalStyle from './styles/GlobalStyles';
+import Theme from './styled/Theme';
 import Routes from './routes/Routes';
-import Footer from './components/Footer';
 
 const App = () => (
-  <>
-    <GlobalStyle />
+  <Theme>
     <Routes />
-    <Footer />
-  </>
+  </Theme>
 );
 
 export default App;

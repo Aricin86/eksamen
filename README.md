@@ -37,4 +37,6 @@ Eksamen i webapplikasjoner 2020
 
 ## Gå igjennom leksjon-14 og se om koden er lik... if so: legg til her
 
+- Alt som har med image.js (5 filer)
+
 # HUSK: Legg til kommentarer i koden OG her når man bruker kode fra andre

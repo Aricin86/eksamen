@@ -1,5 +1,5 @@
 import multer from 'multer';
-import ErrorHandler from '../utils/errorHandler';
+import ErrorHandler from '../utils/errorHandler.js';
 
 function fileFilter(req, file, cb) {
   const filetypes = /\.(jpeg|jpg|png)$/;

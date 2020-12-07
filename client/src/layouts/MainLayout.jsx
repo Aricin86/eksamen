@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Menu from '../components/Menu';
+import Footer from '../components/Footer';
 
 const StyledMain = styled.main`
   margin: 0 auto;
@@ -19,6 +20,7 @@ const MainLayout = ({ children }) => (
       <Menu />
     </StyledHeader>
     <StyledMain>{children}</StyledMain>
+    <Footer />
   </>
 );
 

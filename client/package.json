@@ -1,14 +1,13 @@
 {
   "name": "eksamen_client",
   "version": "1.0.0",
-  "description": "",
   "main": "main.js",
+  "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.development.config.js --mode development",
     "clean": "rm -rf public",
     "start": "webpack-cli serve --mode development"
   },
-  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/plugin-transform-runtime": "^7.12.1",
