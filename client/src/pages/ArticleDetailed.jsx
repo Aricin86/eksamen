@@ -12,7 +12,7 @@ const ArticleDetailed = () => {
   useEffect(() => {
     if (id) {
       const fetchData = async () => {
-        const { data, error } = await get();
+        const { data, error } = await get(id);
         if (error) {
           setError(error);
           setArticle([]);

@@ -61,7 +61,7 @@ const ArticleList = () => {
         <Button as={Link} to="/ny-artikkel" style={{ marginLeft: 'auto' }}>
           Ny artikkel
         </Button>
-        <select >
+        <select>
           {categories &&
             categories.map((category) => (
               <option key={category.id}>
@@ -71,7 +71,7 @@ const ArticleList = () => {
         </select>
         <input placeholder="Søk på tittel" onChange={searchArticle} />
       </header>
-      
+
       <section>
         {error && <p>{error}</p>}
         <div>
@@ -92,13 +92,9 @@ const ArticleList = () => {
                   <h2>{article.title}</h2>
                   <h4>{capCategory(article.category.category)}</h4>
                   <article>{article.ingress}</article>
-                  <Button
-                    type="button"
-                    as={Link}
-                    to={`/fagartikler/${article.id}`}
-                  >
-                    Les mer her
-                  </Button>
+                  <Link to={`/fagartikler/${article.id}`}>
+                    <Button type="button">Les mer her</Button>
+                  </Link>
                 </div>
               ))}
         </div>

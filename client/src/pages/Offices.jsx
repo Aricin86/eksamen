@@ -73,8 +73,8 @@ const Offices = () => {
   // const { path, url } = useRouteMatch();
 
   const searchOffice = (e) => {
-    const keyword = e.target.value;
-    setSearch(keyword);
+    const word = e.target.value;
+    setSearch(word);
   };
 
   const clickCard = () => {

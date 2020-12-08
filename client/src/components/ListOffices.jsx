@@ -4,6 +4,7 @@ import { useRouteMatch, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { OfficeList } from '../data/OfficeList';
+// import FilterOffices from '../hooks/filters';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
