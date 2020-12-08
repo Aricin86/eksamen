@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from '../components/Banner';
 import RegisterForm from '../components/RegisterForm';
+import Banner from '../components/Banner';
 
 const RegisterUser = () => (
   <>

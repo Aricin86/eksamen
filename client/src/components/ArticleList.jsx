@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Container, Button } from '../styled/Styled';
+import { NavLink, Link } from 'react-router-dom';
+import { Container, Button, StyledArticleListed } from '../styled/Styled';
 import { articleList } from '../utils/articleService';
 import { categoryList } from '../utils/categoryService';
 import { useAuthContext } from '../context/AuthProvider';
@@ -20,14 +20,14 @@ const ArticleList = () => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
 
-  const filtering = () => {
-    articleList.filter((data) => {
-      if (search === '') return data;
-      if (data.title.toLowerCase().includes(search)) {
-        return data;
-      }
-    });
-  };
+  // const filtering = () => {
+  //   articleList.filter((data) => {
+  //     if (search === '') return data;
+  //     if (data.title.toLowerCase().includes(search)) {
+  //       return data;
+  //     }
+  //   });
+  // };
 
   const searchArticle = (e) => {
     const keyword = e.target.value;
@@ -69,6 +69,7 @@ const ArticleList = () => {
             Ny artikkel
           </Button>
         )}
+        <input placeholder="Søk på tittel" onChange={searchArticle} />
         <select>
           {categories &&
             categories.map((category) => (
@@ -77,7 +78,6 @@ const ArticleList = () => {
               </option>
             ))}
         </select>
-        <input placeholder="Søk på tittel" onChange={searchArticle} />
       </header>
 
       <section>
@@ -96,19 +96,14 @@ const ArticleList = () => {
                 }
               })
               .map((article) => (
-                <div key={article.id}>
+                <StyledArticleListed key={article.id}>
                   <div id="bilde" />
-                  <h2>{article.title}</h2>
-                  <h4>{capCategory(article.category.category)}</h4>
-                  <article>{article.ingress}</article>
-                  <Button
-                    type="button"
-                    as={NavLink}
-                    to={`/fagartikler/${article.id}`}
-                  >
-                    Les mer her
-                  </Button>
-                </div>
+                  <Link to={`/fagartikkel/${article.id}`}>
+                    <h4>{article.title}</h4>
+                  </Link>
+                  <h5>{capCategory(article.category.category)}</h5>
+                  <p>{article.ingress}</p>
+                </StyledArticleListed>
               ))}
         </div>
       </section>

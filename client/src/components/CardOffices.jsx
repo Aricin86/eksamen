@@ -1,27 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { OfficeList } from '../data/OfficeList';
-
-// const StyledLink = styled(Link)`
-//   text-decoration: none;
-
-//   &:visited {
-//     color: black;
-//   }
-// `;
-
-const StyledCard = styled.section`
-  list-style: none;
-  border: 1px solid black;
-  width: 250px;
-  padding: 10px;
-  display: inline-grid;
-`;
-
-const StyledTitle = styled.h3`
-  margin: 0;
-`;
+import { StyledCard, StyledTitle } from '../styled/Styled';
 
 const CardOffices = ({ search }) =>
   // const { url } = useRouteMatch();

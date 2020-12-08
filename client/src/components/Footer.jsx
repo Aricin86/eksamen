@@ -1,27 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const FooterWrapper = styled.footer`
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  margin-top: 40px;
-  /* position: fixed; */
-  background-color: #479eb9;
-  display: flex;
-  justify-content: center;
-`;
-
-const FooterItem = styled.p`
-  color: #fff;
-  margin: 20px;
-`;
-
-const FooterLink = styled.a`
-  color: #fff;
-  margin: 20px;
-  text-decoration: none;
-`;
+import { FooterWrapper, FooterItem, FooterLink } from '../styled/Styled';
 
 const Footer = () => (
   <FooterWrapper>
