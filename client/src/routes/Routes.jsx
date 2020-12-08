@@ -64,7 +64,7 @@ const Routes = () => (
         <Route path="/fagartikler">
           <Articles />
         </Route>
-        <Route path="/fagartikler/:id">
+        <Route path="/fagartikkel/:id">
           <ArticleDetailed />
         </Route>
         <Route path="/kontakt-oss">

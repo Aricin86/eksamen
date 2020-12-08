@@ -25,44 +25,80 @@ export const RegisterButton = styled(Button)`
   color: #1c1c21;
 `;
 
-// ! FIKSE LITT PÅ DENNE
+// * ARTICLE LIST
 export const Container = styled.main`
   width: 70%;
   margin: 40px auto 70px auto;
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: repeat(auto-fill, 100px);
+
   & > header {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-column: 1/5;
+    grid-column: 1/3;
     grid-row: 1;
 
     & > a {
       grid-column: 1;
       grid-row: 1;
-      align-items: left;
+      width: 150px;
+      text-align: center;
     }
 
     & > select {
-      grid-column: 4;
+      grid-row: 1;
+      grid-column: 3;
+      width: 150px;
+
+      justify-self: right;
+    }
+
+    & > input {
+      grid-row: 1;
+      grid-column: 2;
+      width: 250px;
+      justify-self: right;
+      margin: 0 10px;
+    }
+  }
+`;
+
+export const StyledArticleListed = styled.article`
+  margin-top: 50px;
+
+  & > a {
+    text-decoration: none;
+
+    & > h4 {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
+
+      :visited {
+        color: black;
+      }
     }
   }
 
-  input {
-    grid-column: 3;
+  & div#bilde {
+    width: 150px;
+    height: 100px;
+    float: left;
+    margin-right: 20px;
+    background-color: grey;
+    vertical-align: text-top;
   }
 
-  & > section {
-    grid-column: 2/5;
-
-    & #bilde {
-      width: 50px;
-      height: 45px;
-      background-color: grey;
-      grid-column: 1;
-    }
+  & > h5 {
+    float: right;
+    font-size: 1.5rem;
+    margin-top: -25px;
   }
+
+  & > p {
+    display: grid;
+  }
+`;
+
+export const ArticleListTitle = styled.h4`
+  margin: 0;
 `;
 
 export const FormControl = styled.div``;
@@ -211,7 +247,7 @@ export const BackgroundImage = styled.img`
 // * Offices
 export const CardSection = styled.section`
   margin: 0 auto 40px auto;
-  width: 70%;
+  width: 90%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 20px;
@@ -298,12 +334,11 @@ export const StyledRegisterForm = styled.form`
 export const StyledCard = styled.section`
   list-style: none;
   border: 1px solid black;
-  width: 250px;
   padding: 10px;
   display: inline-grid;
 `;
 
-export const StyledTitle = styled.h3`
+export const StyledTitle = styled.h4`
   margin: 0;
 `;
 
@@ -446,5 +481,51 @@ export const Logo = styled(NavLogInItem)`
 
   & > a {
     color: #333;
+  }
+`;
+
+// * MODAL
+export const ModalStyled = styled.div`
+  position: fixed;
+  display: block;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+`;
+
+export const ModalContent = styled.div`
+  margin: 15% auto;
+  background-color: white;
+  border-radius: 0.25rem;
+  width: 500px;
+  height: 200px;
+  padding: 2rem;
+  position: relative;
+  z-index: 999;
+
+  & > label {
+    margin-top: 30px;
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+    text-align: right;
+
+    & > input {
+      margin: 5px 0 0 20px;
+      padding: 0 10px;
+      min-height: 50px;
+      width: 300px;
+      border: 1px solid #479eb9;
+      border-radius: 5px;
+    }
+  }
+
+  & > button {
+    float: right;
+    margin: 10px 34px;
   }
 `;

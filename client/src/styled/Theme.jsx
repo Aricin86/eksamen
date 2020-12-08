@@ -9,7 +9,7 @@ const theme = {
   // background: '#999',
   colors: {
     title: '#1c1c21',
-    background: '#d3d3d3',
+    background: '#F0F7F9',
     default: '#479eb9',
     warning: '#ff6347',
     info: '#167df6',
