@@ -1,33 +1,19 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThLarge, faThList } from '@fortawesome/free-solid-svg-icons';
-
 import {
   BrowserRouter as Router,
   Route,
   // useRouteMatch,
 } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThLarge, faThList } from '@fortawesome/free-solid-svg-icons';
+
+import Banner from '../components/Banner';
 import ListOffices from '../components/ListOffices';
 import CardOffices from '../components/CardOffices';
 import OfficeDetailed from './OfficeDetailed';
 import { OfficeList } from '../data/OfficeList';
-
-const Banner = styled.header`
-  grid-row: 1;
-  grid-column: 1 / 4;
-  color: #1c1c21;
-  background-color: lightgray;
-  height: 400px;
-
-  h1 {
-    text-align: center;
-    padding: 160px;
-    margin: 0;
-    font-size: 36px;
-  }
-`;
 
 const OfficeSection = styled.section`
   margin: 0 auto 40px auto;
