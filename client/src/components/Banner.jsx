@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const BannerStyle = styled.header`
   grid-row: 1;
@@ -13,5 +14,9 @@ const BannerStyle = styled.header`
 `;
 
 const Banner = ({ children }) => <BannerStyle>{children}</BannerStyle>;
+
+Banner.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default Banner;

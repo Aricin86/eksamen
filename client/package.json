@@ -1,7 +1,7 @@
 {
   "name": "eksamen_client",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "./src/main.js",
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.development.config.js --mode development",

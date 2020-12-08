@@ -1,23 +1,38 @@
 import React, { useState } from 'react';
+
 import {
   BrowserRouter as Router,
   Route,
   // useRouteMatch,
 } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThLarge, faThList } from '@fortawesome/free-solid-svg-icons';
 
 import Banner from '../components/Banner';
+
 import ListOffices from '../components/ListOffices';
 import CardOffices from '../components/CardOffices';
-import OfficeDetailed from './OfficeDetailed';
-import { OfficeList } from '../data/OfficeList';
 
 const OfficeSection = styled.section`
   margin: 0 auto 40px auto;
   width: 85%;
+`;
+
+const CardSection = styled.section`
+  margin: 0 auto 40px auto;
+  width: 70%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  text-decoration: none;
+`;
+
+const ListSection = styled.section`
+  width: 70%;
+  margin: 0 auto 40px auto;
 `;
 
 const SearchInput = styled.input`
@@ -38,7 +53,7 @@ const Icons = styled.a`
   }
 `;
 
-const UserInput = styled.div`
+const UserInput = styled.header`
   display: flex;
   width: 85%;
   margin: 80px auto 10px auto;
@@ -52,8 +67,8 @@ const Offices = () => {
   // const { path, url } = useRouteMatch();
 
   const searchOffice = (e) => {
-    const keyword = e.target.value;
-    setSearch(keyword);
+    const word = e.target.value;
+    setSearch(word);
   };
 
   const clickCard = () => {
@@ -78,21 +93,22 @@ const Offices = () => {
           onChange={searchOffice}
         />
         <Icons onClick={clickCard}>
-          <FontAwesomeIcon icon={faThLarge} size="3x" />
+          <FontAwesomeIcon icon={faThLarge} size="2x" />
         </Icons>
         <Icons onClick={clickList}>
-          <FontAwesomeIcon icon={faThList} size="3x" />
+          <FontAwesomeIcon icon={faThList} size="2x" />
         </Icons>
       </UserInput>
-      <OfficeSection>
-        {card && <CardOffices search={search} />}
-        {list && <ListOffices search={search} />}
-      </OfficeSection>
-      {/* <Router> */}
-      {/*  <Route path={`${path}/${OfficeList.officenumber}`}> */}
-      {/*    <OfficeDetailed /> */}
-      {/*  </Route> */}
-      {/* </Router> */}
+      {card && (
+        <CardSection>
+          <CardOffices search={search} />
+        </CardSection>
+      )}
+      {list && (
+        <ListSection>
+          <ListOffices search={search} />
+        </ListSection>
+      )}
     </>
   );
 };

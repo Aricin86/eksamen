@@ -1,13 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import PropTypes from 'prop-types';
 import { GlobalStyles } from './Global';
-
-// export const theme = {
-//   primaryDark: '#0D0C1D',
-//   primaryLight: '#EFFFFA',
-//   primaryHover: '#343078',
-//   mobile: '576px',
-// };
 
 const theme = {
   // body: '#FFF',
@@ -20,9 +14,6 @@ const theme = {
     warning: '#ff6347',
     info: '#167df6',
     success: '#5cb85c',
-    // primaryDark: '#0D0C1D',
-    // primaryLight: '#EFFFFA',
-    // primaryHover: '#343078',
   },
   breakpoints: {
     sm: '(max-width: 420px)',
@@ -37,5 +28,9 @@ const Theme = ({ children }) => (
     <ThemeProvider theme={theme}>{children}</ThemeProvider>
   </>
 );
+
+Theme.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default Theme;

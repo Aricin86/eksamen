@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, Link } from 'react-router-dom';
 import { login } from '../utils/authService';
 import { useAuthContext } from '../context/AuthProvider';
 import { StyledLoginForm, Button, RegisterButton } from '../styled/Styled';
+// import RegisterForm from './RegisterForm';
 
 const LoginForm = () => {
   const [error, setError] = useState(null);
@@ -70,9 +71,8 @@ const LoginForm = () => {
           Logg inn
         </Button>
         <RegisterButton type="button">Registrer ny bruker</RegisterButton>
-      </div>
-    </StyledLoginForm>
-  );
-};
-
+      </Link>
+    </div>
+  </StyledLoginForm>
+);
 export default LoginForm;
