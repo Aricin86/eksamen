@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { useAuthContext } from '../context/AuthProvider';
 
 import MainLayout from '../layouts/MainLayout';
@@ -35,10 +36,15 @@ const AdminRoutes = ({ children, ...rest }) => {
   const { isLoggedIn, isAdmin, isLoading } = useAuthContext();
   return (
     <Route
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       render={() => isLoggedIn && isAdmin && !isLoading && children}
     />
   );
+};
+
+AdminRoutes.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 const Routes = () => (
@@ -71,8 +77,8 @@ const Routes = () => (
           <RegisterUser />
         </Route>
         <AdminRoutes path="/ny-artikkel">
-        <CreateArticle />
-      </AdminRoutes>
+          <CreateArticle />
+        </AdminRoutes>
         <Route path="*">
           <NoMatch />
         </Route>

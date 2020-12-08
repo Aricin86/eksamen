@@ -1,10 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useRouteMatch, Link } from 'react-router-dom';
+import styled from 'styled-components';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
+
 import { OfficeList } from '../data/OfficeList';
 // import FilterOffices from '../hooks/filters';
+import { StyledList, StyledNumber, StyledListTitle } from '../styled/Styled';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -12,27 +15,6 @@ const StyledLink = styled(Link)`
   &:visited {
     color: black;
   }
-`;
-
-const StyledList = styled.ul`
-  list-style: none;
-  display: grid;
-  grid-template-columns: auto 1fr 1fr 1fr 1fr;
-  padding: 0;
-  align-items: baseline;
-`;
-
-const StyledNumber = styled.p`
-  background-color: black;
-  color: white;
-  padding: 6px 10px;
-  margin-right: 10px;
-  text-align: center;
-`;
-
-const StyledTitle = styled.p`
-  margin: 0;
-  font-weight: bold;
 `;
 
 const ListOffices = ({ search }) => {
@@ -50,7 +32,7 @@ const ListOffices = ({ search }) => {
     <StyledLink to={`${url}/${data.officenumber}`} key={i}>
       <StyledList>
         <StyledNumber>{data.officenumber}</StyledNumber>
-        <StyledTitle>Rørlegger {data.locale}</StyledTitle>
+        <StyledListTitle>Rørlegger {data.locale}</StyledListTitle>
         <li>Rørleggerveien {data.officenumber}</li>
         <li>
           <FontAwesomeIcon icon={faPhone} /> 69 99 00{' '}

@@ -7,6 +7,7 @@ import { get } from '../utils/articleService';
 const ArticleDetailed = () => {
   const { id } = useParams();
   const [article, setArticle] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState('');
 
   useEffect(() => {

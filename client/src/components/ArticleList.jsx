@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Container, Button } from '../styled/Styled';
 import { articleList } from '../utils/articleService';
 import { categoryList } from '../utils/categoryService';
@@ -20,14 +20,14 @@ const ArticleList = () => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
 
-  const filtering = () => {
-    articleList.filter((data) => {
-      if (search === '') return data;
-      if (data.title.toLowerCase().includes(search)) {
-        return data;
-      }
-    });
-  };
+  // const filtering = () => {
+  //   articleList.filter((data) => {
+  //     if (search === '') return data;
+  //     if (data.title.toLowerCase().includes(search)) {
+  //       return data;
+  //     }
+  //   });
+  // };
 
   const searchArticle = (e) => {
     const keyword = e.target.value;
