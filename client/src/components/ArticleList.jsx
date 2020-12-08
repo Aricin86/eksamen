@@ -8,6 +8,28 @@ const ArticleList = () => {
   const [articles, setArticles] = useState(null);
   const [categories, setCategories] = useState(null);
   const [error, setError] = useState(null);
+  const [search, setSearch] = useState('');
+
+  const capCategory = (word) => {
+    if (typeof word !== 'string') {
+      return '';
+    }
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
+
+  const filtering = () => {
+    articleList.filter((data) => {
+      if (search === '') return data;
+      if (data.title.toLowerCase().includes(search)) {
+        return data;
+      }
+    });
+  };
+
+  const searchArticle = (e) => {
+    const keyword = e.target.value;
+    setSearch(keyword);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,18 +58,20 @@ const ArticleList = () => {
   return (
     <Container>
       <header>
-        <Button as={Link} to="/ny-artikkel">
+        <Button as={Link} to="/ny-artikkel" style={{ marginLeft: 'auto' }}>
           Ny artikkel
         </Button>
-        <select>
+        <select >
           {categories &&
             categories.map((category) => (
-              <option key={category.id}>{category.category}</option>
+              <option key={category.id}>
+                {capCategory(category.category)}
+              </option>
             ))}
         </select>
-        <input placeholder="Søk på tittel" />
+        <input placeholder="Søk på tittel" onChange={searchArticle} />
       </header>
-
+      
       <section>
         {error && <p>{error}</p>}
         <div>
@@ -55,20 +79,28 @@ const ArticleList = () => {
             <p>Det er for tiden ingen artikler i denne visningen.</p>
           )}
           {articles &&
-            articles.map((article) => (
-              <div key={article.id}>
-                <h2>{article.title}</h2>
-                <h4>{article.category.category}</h4>
-                <article>{article.ingress}</article>
-                <Button
-                  type="button"
-                  as={Link}
-                  to={`fagartikkel/${article.id}`}
-                >
-                  Les mer her
-                </Button>
-              </div>
-            ))}
+            articles
+              .filter((data) => {
+                if (search === '') return data;
+                if (data.title.toLowerCase().includes(search)) {
+                  return data;
+                }
+              })
+              .map((article) => (
+                <div key={article.id}>
+                  <div id="bilde" />
+                  <h2>{article.title}</h2>
+                  <h4>{capCategory(article.category.category)}</h4>
+                  <article>{article.ingress}</article>
+                  <Button
+                    type="button"
+                    as={Link}
+                    to={`/fagartikler/${article.id}`}
+                  >
+                    Les mer her
+                  </Button>
+                </div>
+              ))}
         </div>
       </section>
     </Container>

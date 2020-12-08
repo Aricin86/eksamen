@@ -1,22 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useRouteMatch, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { OfficeList } from '../data/OfficeList';
 
-const StyledList = styled(Link)`
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:visited {
+    color: black;
+  }
+`;
+
+const StyledList = styled.ul`
   list-style: none;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr 1fr 1fr 1fr;
   padding: 0;
   align-items: baseline;
 `;
 
-const StyledListItem = styled.li`
-  padding-left: 20px;
-  display: table-row;
+const StyledNumber = styled.p`
+  background-color: black;
+  color: white;
+  padding: 6px 10px;
+  margin-right: 10px;
+  text-align: center;
 `;
 
-const StyledTitle = styled.h3`
+const StyledTitle = styled.p`
   margin: 0;
+  font-weight: bold;
 `;
 
 const ListOffices = ({ search }) => {
@@ -31,20 +46,20 @@ const ListOffices = ({ search }) => {
       return data;
     }
   }).map((data, i) => (
-    <StyledList to={`${url}/${data.officenumber}`} key={i}>
-      <StyledTitle>
-        {data.locale} - {data.place}
-      </StyledTitle>
-      {/* <li>Rørlegger {data.locale}</li> */}
-      <StyledListItem>Rørleggerveien {data.officenumber}</StyledListItem>
-      <StyledListItem>
-        Tlf. 69 99 00{' '}
-        {data.officenumber < 10 ? `0${data.officenumber}` : data.officenumber}
-      </StyledListItem>
-      <StyledListItem>
-        {data.place.toLowerCase()}.{data.locale.toLowerCase()}@lgror.no
-      </StyledListItem>
-    </StyledList>
+    <StyledLink to={`${url}/${data.officenumber}`} key={i}>
+      <StyledList>
+        <StyledNumber>{data.officenumber}</StyledNumber>
+        <StyledTitle>Rørlegger {data.locale}</StyledTitle>
+        <li>Rørleggerveien {data.officenumber}</li>
+        <li>
+          <FontAwesomeIcon icon={faPhone} /> 69 99 00{' '}
+          {data.officenumber < 10 ? `0${data.officenumber}` : data.officenumber}
+        </li>
+        <li>
+          {data.place.toLowerCase()}.{data.locale.toLowerCase()}@lgror.no
+        </li>
+      </StyledList>
+    </StyledLink>
   ));
 };
 
