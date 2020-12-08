@@ -101,9 +101,13 @@ const ArticleList = () => {
                   <h2>{article.title}</h2>
                   <h4>{capCategory(article.category.category)}</h4>
                   <article>{article.ingress}</article>
-                  <Link to={`/fagartikler/${article.id}`}>
-                    <Button type="button">Les mer her</Button>
-                  </Link>
+                  <Button
+                    type="button"
+                    as={NavLink}
+                    to={`/fagartikler/${article.id}`}
+                  >
+                    Les mer her
+                  </Button>
                 </div>
               ))}
         </div>
