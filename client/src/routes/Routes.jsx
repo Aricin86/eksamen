@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-// import NoMatch from '../components/NoMatch';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthProvider';
 
 import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home';
@@ -11,6 +11,33 @@ import Login from '../pages/Login';
 import CreateArticle from '../pages/CreateArticle';
 import OfficeDetailed from '../pages/OfficeDetailed';
 // import OfficeDetailed from '../pages/OfficeDetailed';
+// import NoMatch from '../components/NoMatch';
+
+// const AuthenticatedRoutes = ({ children, ...rest }) => {
+//   const { isLoggedIn, isLoading } = useAuthContext();
+//   return (
+//     <Route
+//       {...rest}
+//       render={() =>
+//         isLoggedIn && !isLoading ? (
+//           <div>{children}</div>
+//         ) : (
+//           <Redirect to="/login" />
+//         )
+//       }
+//     />
+//   );
+// };
+
+const AdminRoutes = ({ children, ...rest }) => {
+  const { isLoggedIn, isAdmin, isLoading } = useAuthContext();
+  return (
+    <Route
+      {...rest}
+      render={() => isLoggedIn && isAdmin && !isLoading && children}
+    />
+  );
+};
 
 const Routes = () => (
   <Router>
@@ -30,12 +57,12 @@ const Routes = () => (
       <Route path="/login">
         <Login />
       </Route>
-      <Route path="/ny-artikkel">
-        <CreateArticle />
-      </Route>
       <Route path="/etkontor">
         <OfficeDetailed />
       </Route>
+      <AdminRoutes path="/ny-artikkel">
+        <CreateArticle />
+      </AdminRoutes>
       {/* <Route path="*">
         <NoMatch />
       </Route> */}

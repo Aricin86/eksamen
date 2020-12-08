@@ -37,6 +37,8 @@ export const Container = styled.section`
   }
 `;
 
+export const FormControl = styled.div``;
+
 export const StyledLoginForm = styled.form`
   margin: 40px 0 70px 0;
   display: grid;
@@ -58,14 +60,20 @@ export const StyledLoginForm = styled.form`
       border-radius: 5px;
     }
   }
-  & > div {
-    margin-top: 50px;
+  & > div:last-child {
+    margin-top: 80px;
     grid-column: 2;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     & > button {
       justify-self: center;
     }
+  }
+  & > p {
+    margin: 30px 0 -50px 0;
+    padding: 0;
+    grid-column: 2;
+    text-align: center;
   }
 `;
 
