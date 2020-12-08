@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 import { useAuthContext } from '../context/AuthProvider';
 
 import MainLayout from '../layouts/MainLayout';
@@ -71,8 +76,8 @@ const Routes = () => (
           <RegisterUser />
         </Route>
         <AdminRoutes path="/ny-artikkel">
-        <CreateArticle />
-      </AdminRoutes>
+          <CreateArticle />
+        </AdminRoutes>
         <Route path="*">
           <NoMatch />
         </Route>

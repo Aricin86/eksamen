@@ -71,8 +71,9 @@ const LoginForm = () => {
           Logg inn
         </Button>
         <RegisterButton type="button">Registrer ny bruker</RegisterButton>
-      </Link>
-    </div>
-  </StyledLoginForm>
-);
+      </div>
+    </StyledLoginForm>
+  );
+};
+
 export default LoginForm;
