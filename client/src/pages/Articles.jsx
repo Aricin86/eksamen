@@ -23,7 +23,6 @@ const Articles = () => (
       <h1>Fagartikler</h1>
     </Banner>
 
-    {/* // Map gjennom artikler og skriv de ut her */}
     <ArticleList />
   </>
 );

@@ -1,25 +1,25 @@
 import React from 'react';
-import styled from 'styled-components';
+import Banner from './Banner';
 
-const Banner = styled.header`
-  grid-row: 1;
-  grid-column: 1 / 4;
-  color: #1c1c21;
-  background-color: lightgray;
-  height: 400px;
-
-  h1 {
-    text-align: center;
-    padding: 160px;
-    margin: 0;
-    font-size: 36px;
-  }
-`;
-
+// ! Trenger officenumber, locale og ansatte
 const OfficeDetailedView = () => (
-  <Banner>
-    <h1>Kontor detaljert</h1>
-  </Banner>
+  <>
+    <Banner>
+      <h1>Kontor detaljert</h1>
+    </Banner>
+    <main>
+      <h2>Velkommen til Rørlegger</h2>
+      <p>Lorem ipsum</p>
+      <h3>Våre ansatte</h3>
+      <section>
+        <p>Ansatt Ansattnavn</p>
+        <p>Stilling</p>
+      </section>
+      <section>
+        <h2>Kontakt oss på 69 99 00 ..</h2>
+      </section>
+    </main>
+  </>
 );
 
 export default OfficeDetailedView;
