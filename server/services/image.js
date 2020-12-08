@@ -8,3 +8,5 @@ export const uploadImage = async (data) => {
   const savedImage = await image.save();
   return savedImage;
 };
+
+export const getImageById = async (id) => Image.findById(id);

@@ -30,6 +30,14 @@ const ArticleForm = () => (
         <option>Forfatter</option>
       </select>
     </label>
+    <label htmlFor="secret">
+      Hemmelig artikkel?
+      <input type="checkbox" id="secret" />
+    </label>
+    <label htmlFor="image">
+      Last opp bilde
+      <input type="file" id="image" accept="image" />
+    </label>
     <Button type="submit">Lagre</Button>
   </StyledArticleForm>
 );
