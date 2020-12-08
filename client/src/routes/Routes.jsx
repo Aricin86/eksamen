@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, Route } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthProvider';
 
 import MainLayout from '../layouts/MainLayout';
 
@@ -13,6 +14,32 @@ import CreateArticle from '../pages/CreateArticle';
 import OfficeDetailed from '../pages/OfficeDetailed';
 import RegisterUser from '../pages/RegisterUser';
 import ArticleDetailed from '../pages/ArticleDetailed';
+
+// const AuthenticatedRoutes = ({ children, ...rest }) => {
+//   const { isLoggedIn, isLoading } = useAuthContext();
+//   return (
+//     <Route
+//       {...rest}
+//       render={() =>
+//         isLoggedIn && !isLoading ? (
+//           <div>{children}</div>
+//         ) : (
+//           <Redirect to="/login" />
+//         )
+//       }
+//     />
+//   );
+// };
+
+const AdminRoutes = ({ children, ...rest }) => {
+  const { isLoggedIn, isAdmin, isLoading } = useAuthContext();
+  return (
+    <Route
+      {...rest}
+      render={() => isLoggedIn && isAdmin && !isLoading && children}
+    />
+  );
+};
 
 const Routes = () => (
   <Router>
@@ -40,12 +67,12 @@ const Routes = () => (
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/ny-artikkel">
-          <CreateArticle />
-        </Route>
         <Route path="/registrer">
           <RegisterUser />
         </Route>
+        <AdminRoutes path="/ny-artikkel">
+        <CreateArticle />
+      </AdminRoutes>
         <Route path="*">
           <NoMatch />
         </Route>

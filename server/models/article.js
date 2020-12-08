@@ -31,6 +31,15 @@ const ArticleSchema = new Schema(
         values: ['Lars Larsen', 'Gunn Gundersen', 'Simen Simensen'],
       },
     },
+    isSecret: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    image: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Image',
+    },
     category: {
       type: mongoose.Schema.ObjectId,
       ref: 'Category',
