@@ -1,8 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-// import NoMatch from '../components/NoMatch';
+import { BrowserRouter as Router, Route, Switch, Redirect, Route } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthProvider';
 
 import MainLayout from '../layouts/MainLayout';
+
+import NoMatch from '../pages/NoMatch';
 import Home from '../pages/Home';
 import Offices from '../pages/Offices';
 import Articles from '../pages/Articles';
@@ -10,35 +12,71 @@ import Contact from '../pages/Contact';
 import Login from '../pages/Login';
 import CreateArticle from '../pages/CreateArticle';
 import OfficeDetailed from '../pages/OfficeDetailed';
-// import OfficeDetailed from '../pages/OfficeDetailed';
+import RegisterUser from '../pages/RegisterUser';
+import ArticleDetailed from '../pages/ArticleDetailed';
+
+// const AuthenticatedRoutes = ({ children, ...rest }) => {
+//   const { isLoggedIn, isLoading } = useAuthContext();
+//   return (
+//     <Route
+//       {...rest}
+//       render={() =>
+//         isLoggedIn && !isLoading ? (
+//           <div>{children}</div>
+//         ) : (
+//           <Redirect to="/login" />
+//         )
+//       }
+//     />
+//   );
+// };
+
+const AdminRoutes = ({ children, ...rest }) => {
+  const { isLoggedIn, isAdmin, isLoading } = useAuthContext();
+  return (
+    <Route
+      {...rest}
+      render={() => isLoggedIn && isAdmin && !isLoading && children}
+    />
+  );
+};
 
 const Routes = () => (
   <Router>
     <MainLayout>
-      <Route exact path="/">
-        <Home />
-      </Route>
-      <Route path="/kontorer">
-        <Offices />
-      </Route>
-      <Route path="/fagartikler">
-        <Articles />
-      </Route>
-      <Route path="/kontakt-oss">
-        <Contact />
-      </Route>
-      <Route path="/login">
-        <Login />
-      </Route>
-      <Route path="/ny-artikkel">
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/kontorer">
+          <Offices />
+        </Route>
+        {/* // ! Skal være /:id */}
+        <Route path="/detaljert">
+          <OfficeDetailed />
+        </Route>
+        <Route path="/fagartikler">
+          <Articles />
+        </Route>
+        <Route path="/fagartikler/:id">
+          <ArticleDetailed />
+        </Route>
+        <Route path="/kontakt-oss">
+          <Contact />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/registrer">
+          <RegisterUser />
+        </Route>
+        <AdminRoutes path="/ny-artikkel">
         <CreateArticle />
-      </Route>
-      <Route path="/etkontor">
-        <OfficeDetailed />
-      </Route>
-      {/* <Route path="*">
-        <NoMatch />
-      </Route> */}
+      </AdminRoutes>
+        <Route path="*">
+          <NoMatch />
+        </Route>
+      </Switch>
     </MainLayout>
   </Router>
 );

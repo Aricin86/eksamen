@@ -10,5 +10,6 @@ router.post(
   [isAuthenticated, isAuthorized('admin'), upload],
   imageController.create
 );
+router.get('/images/:id', imageController.get);
 
 export default router;

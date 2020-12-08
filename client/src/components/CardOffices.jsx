@@ -1,14 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useRouteMatch, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { OfficeList } from '../data/OfficeList';
-import OfficeDetailed from '../pages/OfficeDetailed';
+
+// const StyledLink = styled(Link)`
+//   text-decoration: none;
+
+//   &:visited {
+//     color: black;
+//   }
+// `;
 
 const StyledCard = styled.section`
   list-style: none;
   border: 1px solid black;
   width: 250px;
-  margin-left: 10px;
   padding: 10px;
   display: inline-grid;
 `;
@@ -40,9 +46,10 @@ const CardOffices = ({ search }) =>
       <li>
         {data.place.toLowerCase()}.{data.locale.toLowerCase()}@lgror.no
       </li>
-      <button type="button" as={Link} to={`kontor/${data.officenumber}`}>
-        Mer info
-      </button>
+      {/* Her skal det være noe sånt som {`${url}/:id`} eller /{data.officenumber} */}
+      <Link to="/detaljert">
+        <button type="button">Mer info</button>
+      </Link>
     </StyledCard>
   ));
 export default CardOffices;

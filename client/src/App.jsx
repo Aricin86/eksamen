@@ -1,10 +1,13 @@
 import React from 'react';
 import Theme from './styled/Theme';
 import Routes from './routes/Routes';
+import AuthProvider from './context/AuthProvider';
 
 const App = () => (
   <Theme>
-    <Routes />
+    <AuthProvider>
+      <Routes />
+    </AuthProvider>
   </Theme>
 );
 
