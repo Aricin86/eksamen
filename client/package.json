@@ -49,6 +49,7 @@
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "faker": "^5.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.4.0-0",
     "react-dom": "^16.4.0-0",
@@ -56,15 +57,5 @@
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.2.0",
     "styled-normalize": "^8.0.7"
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx}": [
-      "eslint . --fix"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
