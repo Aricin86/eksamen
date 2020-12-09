@@ -42,7 +42,7 @@ const ArticleList = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const { data } = await articleList();
+      const { data, error } = await articleList();
       if (!data.success) {
         setError(error);
       } else {
@@ -52,7 +52,7 @@ const ArticleList = () => {
       setLoading(false);
     };
     fetchData();
-  });
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
