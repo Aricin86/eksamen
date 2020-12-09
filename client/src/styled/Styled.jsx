@@ -26,42 +26,43 @@ export const RegisterButton = styled(Button)`
 `;
 
 // * ARTICLE LIST
-export const Container = styled.main`
+export const Container = styled.section`
   width: 70%;
   margin: 40px auto 70px auto;
+`;
 
-  & > header {
-    display: grid;
-    grid-column: 1/3;
+export const ArticleHeader = styled.header`
+  display: grid;
+  grid-column: 1/3;
+  grid-row: 1;
+  height: 50px;
+
+  & > a {
+    grid-column: 1;
     grid-row: 1;
+    width: 150px;
+    text-align: center;
+  }
 
-    & > a {
-      grid-column: 1;
-      grid-row: 1;
-      width: 150px;
-      text-align: center;
-    }
+  & > select {
+    grid-row: 1;
+    grid-column: 3;
+    width: 150px;
 
-    & > select {
-      grid-row: 1;
-      grid-column: 3;
-      width: 150px;
+    justify-self: right;
+  }
 
-      justify-self: right;
-    }
-
-    & > input {
-      grid-row: 1;
-      grid-column: 2;
-      width: 250px;
-      justify-self: right;
-      margin: 0 10px;
-    }
+  & > input {
+    grid-row: 1;
+    grid-column: 2;
+    width: 250px;
+    justify-self: right;
+    margin: 0 10px;
   }
 `;
 
 export const StyledArticleListed = styled.article`
-  margin-top: 50px;
+  padding-top: 60px;
 
   & > a {
     text-decoration: none;
@@ -336,7 +337,8 @@ export const StyledCard = styled.section`
   border: 1px solid black;
   padding: 10px;
   display: inline-grid;
-  width: 80%;
+  /* width: 80%; */
+  min-width: 250px;
 `;
 
 export const StyledTitle = styled.h4`
@@ -344,7 +346,7 @@ export const StyledTitle = styled.h4`
 `;
 
 // * ContactForm
-export const StyledContactMain = styled.main`
+export const StyledContactMain = styled.section`
   width: 40%;
   margin: 0 auto;
 `;
@@ -386,7 +388,7 @@ export const FooterWrapper = styled.footer`
   bottom: 0;
   left: 0;
   width: 100%;
-  margin-top: 40px;
+  /* margin-top: 40px; */
   /* position: fixed; */
   background-color: #479eb9;
   display: flex;
@@ -529,4 +531,40 @@ export const ModalContent = styled.div`
     float: right;
     margin: 10px 34px;
   }
+`;
+
+export const StyledOfficeDetailed = styled.section`
+  margin: 40px auto;
+  width: 90%;
+
+  & > h2 {
+    margin-top: 0;
+  }
+`;
+
+export const StyledArticleDetailed = styled.section`
+  margin: 40px auto;
+  width: 90%;
+
+  & > button {
+    margin-right: 10px;
+  }
+`;
+
+export const ArticleDate = styled.p`
+  grid-row: 1;
+  font-weight: bold;
+  text-align: end;
+`;
+
+export const ArticleAuthor = styled.p`
+  grid-row: 1;
+  font-weight: bold;
+`;
+
+export const ArticleDetailedHeader = styled.header`
+  display: grid;
+  width: 100%;
+  vertical-align: top;
+  margin-bottom: 30px;
 `;

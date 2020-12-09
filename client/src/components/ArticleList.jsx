@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Container, Button, StyledArticleListed } from '../styled/Styled';
+import {
+  Container,
+  Button,
+  StyledArticleListed,
+  ArticleHeader,
+} from '../styled/Styled';
 import { articleList } from '../utils/articleService';
 import { categoryList } from '../utils/categoryService';
 import { useAuthContext } from '../context/AuthProvider';
@@ -37,7 +42,7 @@ const ArticleList = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const { data } = await articleList();
+      const { data, error } = await articleList();
       if (!data.success) {
         setError(error);
       } else {
@@ -63,7 +68,7 @@ const ArticleList = () => {
 
   return (
     <Container>
-      <header>
+      <ArticleHeader>
         {isLoggedIn && isAdmin && (
           <Button as={NavLink} to="/ny-artikkel">
             Ny artikkel
@@ -78,7 +83,7 @@ const ArticleList = () => {
               </option>
             ))}
         </select>
-      </header>
+      </ArticleHeader>
 
       <section>
         {error && <p>{error}</p>}

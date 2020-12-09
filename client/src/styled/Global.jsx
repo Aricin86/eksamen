@@ -10,9 +10,11 @@ export const GlobalStyles = createGlobalStyle`
     background-color: #F5F4F5;
     margin: 0 auto;
     font-family: 'Roboto', 'Helvetica', sans-serif;
+    /* height: 100vh; */
   }
   main {
     background-color: white;
+    min-height: 100vh;
   }
   body {
     h1 {
