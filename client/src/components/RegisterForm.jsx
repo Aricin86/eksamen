@@ -88,7 +88,7 @@ const RegisterForm = () => {
           {error ||
             (errors && (
               <div>
-                {/* {error && <p>{error}</p>} */}
+                {error && <p>{error}</p>}
                 {errors &&
                   errors.split('\n').map((err, i) => <p key={i}>{err}</p>)}
               </div>

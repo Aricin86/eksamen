@@ -336,6 +336,7 @@ export const StyledCard = styled.section`
   border: 1px solid black;
   padding: 10px;
   display: inline-grid;
+  width: 80%;
 `;
 
 export const StyledTitle = styled.h4`

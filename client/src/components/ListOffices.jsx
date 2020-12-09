@@ -17,10 +17,8 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const ListOffices = ({ search }) => {
-  const { url } = useRouteMatch();
-
-  return OfficeList.filter((data) => {
+const ListOffices = ({ search }) =>
+  OfficeList.filter((data) => {
     if (search === '') return data;
     if (
       data.place.toLowerCase().includes(search) ||
@@ -28,8 +26,8 @@ const ListOffices = ({ search }) => {
     ) {
       return data;
     }
-  }).map((data, i) => (
-    <StyledLink to={`${url}/${data.officenumber}`} key={i}>
+  }).map((data) => (
+    <StyledLink to={`/detaljert/${data.officenumber}`} key={data.officenumber}>
       <StyledList>
         <StyledNumber>{data.officenumber}</StyledNumber>
         <StyledListTitle>Rørlegger {data.locale}</StyledListTitle>
@@ -44,6 +42,5 @@ const ListOffices = ({ search }) => {
       </StyledList>
     </StyledLink>
   ));
-};
 
 export default ListOffices;

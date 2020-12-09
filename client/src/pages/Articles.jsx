@@ -1,6 +1,6 @@
 import React from 'react';
-import ArticleList from '../components/ArticleList';
 import Banner from '../components/Banner';
+import ArticleList from '../components/ArticleList';
 
 const Articles = () => (
   <>

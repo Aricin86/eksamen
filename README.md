@@ -61,3 +61,9 @@ Kodesnutter (funksjoner, eller deler av funksjoner) som er direkte kopier.
 
 - Tatt fra: Regex for epost-validering tatt fra leksjon14/server/models/user.js linje 13
 - Brukt: server/models/user.js linje 20
+
+## Fra nettet:
+
+- Finne url-en:
+  - Link: https://stackoverflow.com/questions/18194878/display-the-last-part-of-url-javascript
+  - Vår kode: client/src/pages/OfficeDetailed.jsx --> linje 12

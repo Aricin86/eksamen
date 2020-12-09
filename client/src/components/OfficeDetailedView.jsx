@@ -1,14 +1,11 @@
 import React from 'react';
-import Banner from './Banner';
 
-// ! Trenger officenumber, locale og ansatte
-const OfficeDetailedView = () => (
+const OfficeDetailedView = ({ error, office }) => (
   <>
-    <Banner>
-      <h1>Kontor detaljert</h1>
-    </Banner>
     <main>
-      <h2>Velkommen til Rørlegger</h2>
+      {error && <p>{error}</p>}
+      {!office && <p>Fant ingen infomasjon om dette kontoret.</p>}
+      <h2>Velkommen til Rørlegger {office.locale}</h2>
       <p>Lorem ipsum</p>
       <h3>Våre ansatte</h3>
       <section>
@@ -16,7 +13,12 @@ const OfficeDetailedView = () => (
         <p>Stilling</p>
       </section>
       <section>
-        <h2>Kontakt oss på 69 99 00 ..</h2>
+        <h2>
+          Kontakt oss på 69 99 00{' '}
+          {office.officenumber < 10
+            ? `0${office.officenumber}`
+            : office.officenumber}
+        </h2>
       </section>
     </main>
   </>

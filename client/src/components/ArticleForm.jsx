@@ -4,7 +4,7 @@ import CategoryModal from './CategoryModal';
 
 const ArticleForm = () => {
   const [status, setStatus] = useState(false);
-  const authors = ['Lars Larsen', 'Gunn Gundersen', 'Simen Simensen'];
+  // const authors = ['Lars Larsen', 'Gunn Gundersen', 'Simen Simensen'];
 
   return (
     <>
@@ -34,11 +34,11 @@ const ArticleForm = () => {
         </div>
         <label htmlFor="author">
           Velg forfatter
-          <select id="author">
+          {/* <select id="author">
             {authors.map((data, i) => (
               <option key={i}>{data}</option>
             ))}
-          </select>
+          </select> */}
         </label>
         <label htmlFor="secret">
           Hemmelig artikkel?
