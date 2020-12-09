@@ -9,18 +9,15 @@ const OfficeDetailedView = ({ error, office }) => {
   const randomPos = faker.name.jobType();
 
   const NumberOfEmployees = () => {
+    let emp = '';
     for (let i = 0; i <= 14; i += 1) {
-      return (
-        <ul>
-          <li>{randomName}</li>
-          <li>{randomPos}</li>
-        </ul>
-      );
+      emp += ({ randomName }, { randomPos });
     }
+    return emp;
   };
 
   // const EmployeeMapping = () =>
-  //   office.map((data) => <li>{data.employees.name}</li>);
+  //   office.employee.map((data) => <li>{data.name}</li>);
 
   return (
     <>
@@ -30,10 +27,10 @@ const OfficeDetailedView = ({ error, office }) => {
         <h2>Velkommen til Rørlegger {office.locale}</h2>
         <p>{office.description}</p>
         <h3>Våre ansatte</h3>
-        <ul>
-          {/* <EmployeeMapping /> */}
-          <NumberOfEmployees />
-        </ul>
+
+        {/* <EmployeeMapping /> */}
+        <NumberOfEmployees />
+
         <Banner>
           <h1>
             Kontakt oss på 69 99 00{' '}
