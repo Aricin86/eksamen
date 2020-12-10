@@ -510,48 +510,53 @@ export const Logo = styled(NavLogInItem)`
 `;
 
 // * MODAL
-export const ModalStyled = styled.div`
+export const Overlay = styled.div`
   position: fixed;
-  display: block;
-  overflow: auto;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  background: #d5d5d5;
+  opacity: 0.7;
   z-index: 10;
 `;
 
-export const ModalContent = styled.div`
-  margin: 15% auto;
+export const ModalStyled = styled.section`
+  position: absolute;
+  margin: -50% 25%;
   background-color: white;
   border-radius: 0.25rem;
   width: 500px;
-  height: 200px;
-  padding: 2rem;
-  position: relative;
-  z-index: 999;
+  min-height: 200px;
+  box-shadow: 0px 1px 8px #00000029;
+  z-index: 20;
+
+  & > p {
+    text-align: center;
+    padding-bottom: 30px;
+  }
+`;
+
+export const ModalContent = styled.form`
+  padding: 30px;
+  display: grid;
 
   & > label {
-    margin-top: 30px;
-    display: flex;
+    display: grid;
     font-weight: bold;
-    align-items: center;
-    text-align: right;
 
     & > input {
-      margin: 5px 0 0 20px;
+      margin-top: 5px;
       padding: 0 10px;
       min-height: 50px;
-      width: 300px;
       border: 1px solid #479eb9;
       border-radius: 5px;
     }
   }
 
   & > button {
-    float: right;
-    margin: 10px 34px;
+    margin-top: 20px;
+    justify-self: right;
   }
 `;
 

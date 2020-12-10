@@ -14,6 +14,29 @@ const useCustomHookForm = ({ initialState }) => {
     setValues({ ...values, [name]: value });
   };
 
+  const validateArticleForm = () => {
+    setSubmitable(false);
+
+    if (
+      !values.title ||
+      values.title === '' ||
+      !values.ingress ||
+      values.ingress === '' ||
+      !values.content ||
+      values.content === '' ||
+      !values.category ||
+      values.category === '' ||
+      !values.author ||
+      values.content === ''
+    ) {
+      setErrors('Alle felter markert med * må være fylt ut');
+      setSubmitable(false);
+    } else {
+      setErrors('');
+      setSubmitable(true);
+    }
+  };
+
   const validateRegistrationForm = () => {
     let errorMessage = '';
     setSubmitable(false);
@@ -55,6 +78,7 @@ const useCustomHookForm = ({ initialState }) => {
     values,
     errors,
     handleChange,
+    validateArticleForm,
     validateRegistrationForm,
     submitable,
   };

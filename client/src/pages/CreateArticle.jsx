@@ -7,6 +7,7 @@ const CreateArticle = () => (
     <Banner>
       <h1>Ny artikkel</h1>
     </Banner>
+
     <ArticleForm />
   </>
 );
