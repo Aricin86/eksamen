@@ -70,9 +70,12 @@ const LoginForm = () => {
         <Button isLodading={formState.isSubmitting} type="submit">
           Logg inn
         </Button>
-        <RegisterButton type="button">Registrer ny bruker</RegisterButton>
-      </Link>
-    </div>
-  </StyledLoginForm>
-);
+        <RegisterButton as={Link} to="/registrer">
+          Registrer ny bruker
+        </RegisterButton>
+      </div>
+    </StyledLoginForm>
+  );
+};
+
 export default LoginForm;

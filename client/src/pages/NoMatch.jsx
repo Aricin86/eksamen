@@ -1,14 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Background from '../images/2451354.jpg';
-
-const BackgroundImage = styled.img`
-  width: 100%;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
+import { BackgroundImage } from '../styled/Styled';
 
 const NoMatch = () => (
   <>

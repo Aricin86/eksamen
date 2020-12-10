@@ -7,6 +7,7 @@ const Login = () => (
     <Banner>
       <h1>Logg inn</h1>
     </Banner>
+
     <LoginForm />
   </>
 );

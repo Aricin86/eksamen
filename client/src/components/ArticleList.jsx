@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Container, Button } from '../styled/Styled';
+import { NavLink, Link } from 'react-router-dom';
+import {
+  Container,
+  Button,
+  StyledArticleListed,
+  ArticleHeader,
+} from '../styled/Styled';
 import { articleList } from '../utils/articleService';
 import { categoryList } from '../utils/categoryService';
 import { useAuthContext } from '../context/AuthProvider';
@@ -20,14 +25,14 @@ const ArticleList = () => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
 
-  const filtering = () => {
-    articleList.filter((data) => {
-      if (search === '') return data;
-      if (data.title.toLowerCase().includes(search)) {
-        return data;
-      }
-    });
-  };
+  // const filtering = () => {
+  //   articleList.filter((data) => {
+  //     if (search === '') return data;
+  //     if (data.title.toLowerCase().includes(search)) {
+  //       return data;
+  //     }
+  //   });
+  // };
 
   const searchArticle = (e) => {
     const keyword = e.target.value;
@@ -37,7 +42,7 @@ const ArticleList = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const { data } = await articleList();
+      const { data, error } = await articleList();
       if (!data.success) {
         setError(error);
       } else {
@@ -63,12 +68,13 @@ const ArticleList = () => {
 
   return (
     <Container>
-      <header>
+      <ArticleHeader>
         {isLoggedIn && isAdmin && (
           <Button as={NavLink} to="/ny-artikkel">
             Ny artikkel
           </Button>
         )}
+        <input placeholder="Søk på tittel" onChange={searchArticle} />
         <select>
           {categories &&
             categories.map((category) => (
@@ -77,13 +83,12 @@ const ArticleList = () => {
               </option>
             ))}
         </select>
-        <input placeholder="Søk på tittel" onChange={searchArticle} />
-      </header>
+      </ArticleHeader>
 
       <section>
         {error && <p>{error}</p>}
         <div>
-          {loading && <div>Loading...</div>}
+          {loading && <p>Loading...</p>}
           {!articles && (
             <p>Det er for tiden ingen artikler i denne visningen.</p>
           )}
@@ -96,15 +101,14 @@ const ArticleList = () => {
                 }
               })
               .map((article) => (
-                <div key={article.id}>
+                <StyledArticleListed key={article.id}>
                   <div id="bilde" />
-                  <h2>{article.title}</h2>
-                  <h4>{capCategory(article.category.category)}</h4>
-                  <article>{article.ingress}</article>
-                  <Link to={`/fagartikler/${article.id}`}>
-                    <Button type="button">Les mer her</Button>
+                  <Link to={`/fagartikkel/${article.id}`}>
+                    <h4>{article.title}</h4>
                   </Link>
-                </div>
+                  <h5>{capCategory(article.category.category)}</h5>
+                  <p>{article.ingress}</p>
+                </StyledArticleListed>
               ))}
         </div>
       </section>

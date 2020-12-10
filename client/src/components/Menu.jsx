@@ -1,65 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
 import { useAuthContext } from '../context/AuthProvider';
 import { logout } from '../utils/authService';
-
-const StyledMenu = styled.nav`
-  width: 100%;
-  margin: 0;
-  top: 0;
-  background-color: white;
-  box-shadow: 0px 2px 15px -5px #555555;
-`;
-
-const MenuItemList = styled.ul`
-  display: flex;
-  margin: 0 auto;
-  list-style: none;
-  align-items: center;
-`;
-
-const NavMenuItem = styled.li`
-  padding: 0 20px;
-
-  &:first-child {
-    padding-left: 0;
-  }
-
-  & > a {
-    color: #333;
-    display: block;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 3.456;
-    padding: 5px 0;
-    text-decoration: none;
-
-    &.active {
-      color: #479eb9;
-    }
-  }
-`;
-
-const NavLogInItem = styled(NavMenuItem)`
-  background-color: #479eb9;
-
-  & > a {
-    color: #fff;
-
-    &.active {
-      color: #333;
-    }
-  }
-`;
-
-const Logo = styled(NavLogInItem)`
-  background-color: #fff;
-
-  & > a {
-    color: #333;
-  }
-`;
+import {
+  StyledMenu,
+  MenuItemList,
+  NavMenuItem,
+  NavLogInItem,
+  Logo,
+} from '../styled/Styled';
 
 const Menu = () => {
   const { isLoggedIn, setUser } = useAuthContext();
@@ -104,9 +53,9 @@ const Menu = () => {
         )}
         {isLoggedIn && (
           <NavLogInItem>
-            <button type="button" onClick={handleLogout}>
+            <NavLink to="" onClick={handleLogout}>
               Logg ut
-            </button>
+            </NavLink>
           </NavLogInItem>
         )}
       </MenuItemList>

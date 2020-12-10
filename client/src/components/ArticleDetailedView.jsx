@@ -1,35 +1,65 @@
 import React from 'react';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import {
+  StyledArticleDetailed,
+  Button,
+  RegisterButton,
+  ArticleDate,
+  ArticleAuthor,
+  ArticleDetailedHeader,
+} from '../styled/Styled';
 
-const Banner = styled.header`
-  grid-row: 1;
-  grid-column: 1 / 4;
-  color: #1c1c21;
-  background-color: lightgray;
-  height: 400px;
+const ArticleDetailedView = ({ error, loading, article }) => {
+  // const [error, setError] = useState('');
 
-  h1 {
-    text-align: center;
-    padding: 160px;
-    margin: 0;
-    font-size: 36px;
-  }
-`;
+  // const handleDelete = () => {
+  //   // validateRegistrationForm();
+  //   // Fiks sletting
+  // };
 
-// Alle disse skal fylles med data fra DB
-const ArticleDetailedView = () => (
-  <>
-    <Banner>
-      <h1>Tittel</h1>
-    </Banner>
-    <p>Av forfatter</p>
-    <p>Dato</p>
-    <p>Ingress</p>
-    <h2>Undertittel</h2>
-    <p>Innholdstekst</p>
-    <button type="button">SLETT</button>
-    <button type="button">REDIGER</button>
-  </>
-);
+  // const handleEdit = () => {
+  //   // validateRegistrationForm();
+  //   // Link til ArticleForm og send med id (eller hele artikkelen)
+  // };
+
+  const ShowCustomDateTime = (date) => {
+    const dateString = `${`0${date.getDate()}`.slice(-2)}.${`0${
+      date.getMonth() + 1
+    }`.slice(-2)}.${date.getFullYear()}`.slice(2);
+    // ("0" + date.getDate()).slice(-2) + "." + ("0" + (date.getMonth() + 1)).slice(-2) + "." + date.getFullYear().slice(2);
+    return dateString;
+  };
+
+  return (
+    <StyledArticleDetailed>
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {!article && (
+        <p>
+          Artikkelen kunne ikke hentest fra databasen eller finnes ikke lenger.
+        </p>
+      )}
+      <ArticleDetailedHeader>
+        <ArticleAuthor>Av {article.author}</ArticleAuthor>
+        <ArticleDate>
+          {ShowCustomDateTime(new Date(article.createdAt))}
+        </ArticleDate>
+      </ArticleDetailedHeader>
+      {/* <p>{article.ingress}</p> */}
+      <p>{article.content}</p>
+      <Button type="button">Slett</Button>
+      <RegisterButton type="button">Rediger</RegisterButton>
+    </StyledArticleDetailed>
+  );
+};
+
+ArticleDetailedView.propTypes = {
+  error: PropTypes.any,
+  loading: PropTypes.any,
+  article: PropTypes.any,
+  createdAt: PropTypes.any,
+  // ingress: PropTypes.any,
+  content: PropTypes.any,
+};
 
 export default ArticleDetailedView;

@@ -1,9 +1,9 @@
 import http from './http';
 
-export const register = async () => {
+export const register = async (values) => {
   try {
     // await getCsrfToken();
-    return await http.post('/register');
+    return await http.post('/register', { ...values });
   } catch (error) {
     return error.response;
   }
