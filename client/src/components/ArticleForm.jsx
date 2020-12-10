@@ -4,7 +4,6 @@ import useCustomHookForm from '../hooks/useCustomHookForm';
 import { create } from '../utils/articleService';
 import { categoryList } from '../utils/categoryService';
 import { useAuthContext } from '../context/AuthProvider';
-// import { getUserInfo } from '../utils/authService';
 import CategoryModal from './CategoryModal';
 import { StyledArticleForm, Button, DisabledButton } from '../styled/Styled';
 
@@ -16,10 +15,8 @@ const initialState = {
   author: '',
 };
 
-const ArticleForm = () => {
+const ArticleForm = ({ article }) => {
   const [showModal, setShowModal] = useState(false);
-  // const [status, setStatus] = useState(false);
-
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isSecretValue, setIsSecretValue] = useState(false);
@@ -37,6 +34,18 @@ const ArticleForm = () => {
 
   const toggleModal = () => {
     setShowModal((modalOpen) => !modalOpen);
+  };
+
+  const fetchCategoryData = async () => {
+    setLoading(true);
+    const { data, error } = await categoryList();
+    if (error) {
+      setError(error);
+    } else {
+      setError(null);
+      setCategories(data);
+    }
+    setLoading(false);
   };
 
   const capCategory = (word) => {
@@ -83,18 +92,7 @@ const ArticleForm = () => {
   }, [submitable]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const { data, error } = await categoryList();
-      if (error) {
-        setError(error);
-      } else {
-        setError(null);
-        setCategories(data);
-      }
-      setLoading(false);
-    };
-    fetchData();
+    fetchCategoryData();
   }, []);
 
   return (
@@ -138,12 +136,7 @@ const ArticleForm = () => {
         <div>
           <label htmlFor="category">
             Kategori *
-            <select
-              id="category"
-              name="category"
-              // values={values.category}
-              onChange={handleChange}
-            >
+            <select id="category" name="category" onChange={handleChange}>
               <option value="">Velg kategori</option>
               {categories &&
                 categories.map((category) => (
@@ -153,19 +146,13 @@ const ArticleForm = () => {
                 ))}
             </select>
           </label>
-          {/* // TODO Fiks modal */}
           <Button type="button" onClick={() => setShowModal(true)}>
             Ny
           </Button>
         </div>
         <label htmlFor="author">
           Forfatter *
-          <select
-            id="author"
-            name="author"
-            // values={values.author}
-            onChange={handleChange}
-          >
+          <select id="author" name="author" onChange={handleChange}>
             <option value="">Velg forfatter</option>
             {authors.map((name, i) => (
               <option key={i} value={name}>
@@ -180,7 +167,6 @@ const ArticleForm = () => {
             type="checkbox"
             id="isSecret"
             name="isSecret"
-            // values={isSecret}
             onChange={handleCheckboxChange}
           />
         </label>
@@ -200,9 +186,17 @@ const ArticleForm = () => {
             <p>{errors}</p>
           </div>
         )}
+        {/* // TODO Disable lagre-knappen så lenge det ikke er validert */}
+        {/* {!submitable && <DisabledButton type="button">Lagre</DisabledButton>} */}
+        {/* {submitable && <Button type="submit">Lagre</Button>} */}
         <Button type="submit">Lagre</Button>
       </StyledArticleForm>
-      {showModal && <CategoryModal toggleModal={toggleModal} />}
+      {showModal && (
+        <CategoryModal
+          toggleModal={toggleModal}
+          fetchCategoryData={fetchCategoryData}
+        />
+      )}
     </>
   );
 };

@@ -19,6 +19,7 @@ import Articles from '../pages/Articles';
 import Contact from '../pages/Contact';
 import Login from '../pages/Login';
 import CreateArticle from '../pages/CreateArticle';
+import EditArticle from '../pages/EditArticle';
 import OfficeDetailed from '../pages/OfficeDetailed';
 import RegisterUser from '../pages/RegisterUser';
 import ArticleDetailed from '../pages/ArticleDetailed';
@@ -84,6 +85,9 @@ const Routes = () => (
         </Route>
         <AdminRoutes path="/ny-artikkel">
           <CreateArticle />
+        </AdminRoutes>
+        <AdminRoutes path="/rediger/:id">
+          <EditArticle />
         </AdminRoutes>
         <Route path="*">
           <NoMatch />

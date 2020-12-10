@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+import { remove } from '../utils/articleService';
+import DeletePrompt from './DeletePrompt';
 import {
   StyledArticleDetailed,
   Button,
@@ -9,13 +13,29 @@ import {
   ArticleDetailedHeader,
 } from '../styled/Styled';
 
-const ArticleDetailedView = ({ error, loading, article }) => {
-  // const [error, setError] = useState('');
+const ArticleDetailedView = ({ article }) => {
+  const [showDeletePrompt, setShowDeletePrompt] = useState(false);
+  const [error, setError] = useState(null);
+  const history = useHistory();
 
-  // const handleDelete = () => {
-  //   // validateRegistrationForm();
-  //   // Fiks sletting
-  // };
+  const togglePrompt = () => {
+    setShowDeletePrompt((promptOpen) => !promptOpen);
+  };
+
+  const handleDelete = () => {
+    const deleteArticle = async () => {
+      try {
+        const response = await remove(article.id);
+        if (response.status === 204) {
+          setError(null);
+          history.push('/fagartikler');
+        }
+      } catch (error) {
+        setError(error);
+      }
+    };
+    deleteArticle();
+  };
 
   // const handleEdit = () => {
   //   // validateRegistrationForm();
@@ -31,31 +51,43 @@ const ArticleDetailedView = ({ error, loading, article }) => {
   };
 
   return (
-    <StyledArticleDetailed>
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      {!article && (
-        <p>
-          Artikkelen kunne ikke hentest fra databasen eller finnes ikke lenger.
-        </p>
+    <>
+      <StyledArticleDetailed>
+        {error && <p>{error}</p>}
+        {!article && (
+          <p>
+            Artikkelen kunne ikke hentest fra databasen eller finnes ikke
+            lenger.
+          </p>
+        )}
+        <ArticleDetailedHeader>
+          <ArticleAuthor>Av {article.author}</ArticleAuthor>
+          <ArticleDate>
+            {ShowCustomDateTime(new Date(article.createdAt))}
+          </ArticleDate>
+        </ArticleDetailedHeader>
+        <p>{article.ingress}</p>
+        <p>{article.content}</p>
+        <Button type="button" onClick={() => setShowDeletePrompt(true)}>
+          Slett
+        </Button>
+        <RegisterButton as={NavLink} to={`/rediger/${article.id}`}>
+          Rediger
+        </RegisterButton>
+        {/* <StyledLink to={`/rediger/${article.id}`}>Rediger</StyledLink> */}
+      </StyledArticleDetailed>
+      {showDeletePrompt && (
+        <DeletePrompt
+          togglePrompt={togglePrompt}
+          handleDelete={handleDelete}
+          title={article.title}
+        />
       )}
-      <ArticleDetailedHeader>
-        <ArticleAuthor>Av {article.author}</ArticleAuthor>
-        <ArticleDate>
-          {ShowCustomDateTime(new Date(article.createdAt))}
-        </ArticleDate>
-      </ArticleDetailedHeader>
-      {/* <p>{article.ingress}</p> */}
-      <p>{article.content}</p>
-      <Button type="button">Slett</Button>
-      <RegisterButton type="button">Rediger</RegisterButton>
-    </StyledArticleDetailed>
+    </>
   );
 };
 
 ArticleDetailedView.propTypes = {
-  error: PropTypes.any,
-  loading: PropTypes.any,
   article: PropTypes.any,
   createdAt: PropTypes.any,
   // ingress: PropTypes.any,

@@ -32,7 +32,9 @@ const LoginForm = () => {
       const expire = JSON.parse(window.atob(data.token.split('.')[1])).exp;
       setUser({ ...user, expire });
       setSuccess(true);
-      history.push('/');
+      setTimeout(() => {
+        history.push(`/`);
+      }, 2000);
     }
   };
 
