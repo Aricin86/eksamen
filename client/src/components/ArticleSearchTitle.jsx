@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { StyledArticleListed } from '../styled/Styled';
+import { useAuthContext } from '../context/AuthProvider';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -14,6 +15,8 @@ const StyledLink = styled(Link)`
 `;
 
 const ArticleSearchTitle = ({ search, articles }) => {
+  const { isLoggedIn } = useAuthContext();
+
   const capCategory = (word) => {
     if (typeof word !== 'string') {
       return '';
@@ -25,6 +28,27 @@ const ArticleSearchTitle = ({ search, articles }) => {
     <section>
       {!articles && <p>Det er for tiden ingen artikler i denne visningen.</p>}
       {articles &&
+        !isLoggedIn &&
+        articles
+          .filter((data) => {
+            if (data.isSecret === true) return null;
+            if (search === '') return data;
+            if (data.title.toLowerCase().includes(search)) {
+              return data;
+            }
+          })
+          .map((article) => (
+            <StyledArticleListed key={article.id}>
+              <div id="bilde" />
+              <StyledLink to={`/fagartikkel/${article.id}`}>
+                <h4>{article.title}</h4>
+              </StyledLink>
+              <h5>{capCategory(article.category.category)}</h5>
+              <p>{article.ingress}</p>
+            </StyledArticleListed>
+          ))}
+      {articles &&
+        isLoggedIn &&
         articles
           .filter((data) => {
             if (search === '') return data;

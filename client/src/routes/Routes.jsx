@@ -24,7 +24,7 @@ import OfficeDetailed from '../pages/OfficeDetailed';
 import RegisterUser from '../pages/RegisterUser';
 import ArticleDetailed from '../pages/ArticleDetailed';
 
-// const AuthenticatedRoutes = ({ children, ...rest }) => {
+// const UserRoutes = ({ children, ...rest }) => {
 //   const { isLoggedIn, isLoading } = useAuthContext();
 //   return (
 //     <Route

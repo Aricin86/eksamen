@@ -15,7 +15,8 @@ const initialState = {
   author: '',
 };
 
-const ArticleForm = ({ article }) => {
+const ArticleForm = () => {
+  // const [initialSetup, setInitialSetup] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -83,6 +84,7 @@ const ArticleForm = ({ article }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     validateArticleForm();
+    console.log(values);
   };
 
   useEffect(() => {
@@ -95,6 +97,20 @@ const ArticleForm = ({ article }) => {
     fetchCategoryData();
   }, []);
 
+  // let initialTitle = aTitle;
+  // const updateInputFields = () => {
+  //   initialTitle = aTitle;
+  //   // initialState.title = article.title;
+  // };
+
+  // useEffect(() => {
+  //   if (initialSetup) {
+  //     console.log(aTitle);
+  //     updateInputFields();
+  //     setInitialSetup(false);
+  //   }
+  // }, []);
+
   return (
     <>
       <StyledArticleForm onSubmit={handleSubmit}>
@@ -106,6 +122,7 @@ const ArticleForm = ({ article }) => {
             type="text"
             name="title"
             id="title"
+            // value={aTitle}
             values={values.title}
             onChange={handleChange}
             placeholder="Tittel"

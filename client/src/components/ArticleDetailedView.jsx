@@ -3,6 +3,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { remove } from '../utils/articleService';
+import { useAuthContext } from '../context/AuthProvider';
 import DeletePrompt from './DeletePrompt';
 import {
   StyledArticleDetailed,
@@ -17,6 +18,7 @@ const ArticleDetailedView = ({ article }) => {
   const [showDeletePrompt, setShowDeletePrompt] = useState(false);
   const [error, setError] = useState(null);
   const history = useHistory();
+  const { isLoggedIn, isAdmin } = useAuthContext();
 
   const togglePrompt = () => {
     setShowDeletePrompt((promptOpen) => !promptOpen);
@@ -38,8 +40,8 @@ const ArticleDetailedView = ({ article }) => {
   };
 
   // const handleEdit = () => {
-  //   // validateRegistrationForm();
-  //   // Link til ArticleForm og send med id (eller hele artikkelen)
+  //   validateRegistrationForm();
+  //  Link til ArticleForm og send med id (eller hele artikkelen)
   // };
 
   const ShowCustomDateTime = (date) => {
@@ -53,13 +55,19 @@ const ArticleDetailedView = ({ article }) => {
   return (
     <>
       <StyledArticleDetailed>
+        {/* {error && <Toast type="error" message={error} />}
+        {(article === []) && (
+          <Toast type="info" message="Artikkelen kunne ikke hentest fra databasen eller finnes ikke
+          lenger." />
+        )} */}
         {error && <p>{error}</p>}
-        {!article && (
+        {article === [] && (
           <p>
             Artikkelen kunne ikke hentest fra databasen eller finnes ikke
             lenger.
           </p>
         )}
+
         <ArticleDetailedHeader>
           <ArticleAuthor>Av {article.author}</ArticleAuthor>
           <ArticleDate>
@@ -68,13 +76,16 @@ const ArticleDetailedView = ({ article }) => {
         </ArticleDetailedHeader>
         <p>{article.ingress}</p>
         <p>{article.content}</p>
-        <Button type="button" onClick={() => setShowDeletePrompt(true)}>
-          Slett
-        </Button>
-        <RegisterButton as={NavLink} to={`/rediger/${article.id}`}>
-          Rediger
-        </RegisterButton>
-        {/* <StyledLink to={`/rediger/${article.id}`}>Rediger</StyledLink> */}
+        {isLoggedIn && isAdmin && (
+          <>
+            <Button type="button" onClick={() => setShowDeletePrompt(true)}>
+              Slett
+            </Button>
+            <RegisterButton as={NavLink} to={`/rediger/${article.id}`}>
+              Rediger
+            </RegisterButton>
+          </>
+        )}
       </StyledArticleDetailed>
       {showDeletePrompt && (
         <DeletePrompt
