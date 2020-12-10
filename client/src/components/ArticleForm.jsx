@@ -56,7 +56,7 @@ const ArticleForm = () => {
   };
 
   const handleCheckboxChange = (event) => {
-    setIsSecretValue(event.target.checked);
+    setIsSecretValue(event.target.checked); // Kopiert fra nett
   };
 
   const submitForm = () => {

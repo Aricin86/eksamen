@@ -9,7 +9,7 @@ const OfficeDetailed = () => {
 
   useEffect(() => {
     try {
-      const id = window.location.pathname.split('/').pop();
+      const id = window.location.pathname.split('/').pop(); // Kopiert fra nett
       OfficeList.filter((data) => {
         const officenumber = data.officenumber.toString();
         if (officenumber === id) {
