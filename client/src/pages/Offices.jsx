@@ -19,7 +19,6 @@ const Offices = () => {
   const [search, setSearch] = useState('');
   const [list, setList] = useState(false);
   const [card, setCard] = useState(true);
-  // const { path, url } = useRouteMatch();
 
   const searchOffice = (e) => {
     const word = e.target.value;

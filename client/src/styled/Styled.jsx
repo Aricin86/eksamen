@@ -319,21 +319,11 @@ export const StyledRegisterForm = styled.form`
   }
 `;
 
-// * CardOffices
-// export const StyledLink = styled(Link)`
-//   text-decoration: none;
-
-//   &:visited {
-//     color: black;
-//   }
-// `;
-
 export const StyledCard = styled.section`
   list-style: none;
   border: 1px solid black;
   padding: 10px;
   display: inline-grid;
-  /* width: 80%; */
   min-width: 250px;
 `;
 
@@ -384,8 +374,6 @@ export const FooterWrapper = styled.footer`
   bottom: 0;
   left: 0;
   width: 100%;
-  /* margin-top: 40px; */
-  /* position: fixed; */
   background-color: #479eb9;
   display: flex;
   justify-content: center;
@@ -626,9 +614,6 @@ export const EmployeeSection = styled.section`
   gap: 10px;
   margin-bottom: 40px;
 `;
-
-// export const EmployeeContainer = styled.div`
-// `;
 
 export const ProfilePicture = styled.img`
   width: 100%;

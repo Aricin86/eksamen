@@ -6,7 +6,6 @@ import { articleList } from '../utils/articleService';
 import { categoryList } from '../utils/categoryService';
 import { useAuthContext } from '../context/AuthProvider';
 
-// import ArticleFilterCategory from './ArticleFilterCategory';
 import ArticleSearchTitle from './ArticleSearchTitle';
 
 const ArticleList = () => {
@@ -84,15 +83,6 @@ const ArticleList = () => {
       </ArticleHeader>
       {error && <p>{error}</p>}
       {loading && <div>Loading...</div>}
-      {/* {categories && (
-        <>
-          <ArticleFilterCategory
-            filterCat={filterCat}
-            categories={categories}
-            articles={articles}
-          />
-        </>
-      )} */}
 
       {articles && (
         <>

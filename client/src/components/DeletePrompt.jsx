@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { PromptStyled, PromptContent, Button, Overlay } from '../styled/Styled';
 
 const DeletePrompt = ({ togglePrompt, handleDelete, title }) => {
@@ -32,4 +33,11 @@ const DeletePrompt = ({ togglePrompt, handleDelete, title }) => {
     </>
   );
 };
+
+DeletePrompt.propTypes = {
+  togglePrompt: PropTypes.any,
+  handleDelete: PropTypes.any,
+  title: PropTypes.any,
+};
+
 export default DeletePrompt;

@@ -50,12 +50,11 @@ const ArticleDetailedView = ({ article }) => {
   console.log(article.title);
 
   return (
+    <>
+      <StyledArticleDetailed>
+        {error && <p>{error}</p>}
+        {article.title === undefined && <p>Denne artikkelen finnes ikke</p>}
 
-    <StyledArticleDetailed>
-      {error && <p>{error}</p>}
-      {loading && <p>Loading...</p>}
-      {article.title === undefined && <p>Denne artikkelen finnes ikke</p>}
-      
         <ArticleDetailedHeader>
           <ArticleAuthor>Av {article.author}</ArticleAuthor>
           <ArticleDate>
@@ -74,6 +73,7 @@ const ArticleDetailedView = ({ article }) => {
           </>
         )}
       </StyledArticleDetailed>
+
       {showDeletePrompt && (
         <DeletePrompt
           togglePrompt={togglePrompt}

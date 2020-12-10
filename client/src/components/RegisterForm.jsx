@@ -31,7 +31,7 @@ const RegisterForm = () => {
       try {
         console.log(values);
         const response = await register(values);
-        // TODO Sjekk om statuskoden skal settes til 201
+
         if (response.status === 200) {
           setError(null);
           history.push('/login');

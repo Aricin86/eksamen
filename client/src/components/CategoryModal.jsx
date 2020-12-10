@@ -48,7 +48,7 @@ const CategoryModal = ({ toggleModal, fetchCategoryData }) => {
     if (submitable) {
       addCategory();
     }
-  }, [submitable]);
+  }, [addCategory]);
 
   return (
     <>
@@ -80,6 +80,7 @@ const CategoryModal = ({ toggleModal, fetchCategoryData }) => {
 
 CategoryModal.propTypes = {
   toggleModal: PropTypes.any,
+  fetchCategoryData: PropTypes.any,
 };
 
 export default CategoryModal;

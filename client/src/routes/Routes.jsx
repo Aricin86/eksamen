@@ -1,11 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { useAuthContext } from '../context/AuthProvider';
 
@@ -23,27 +18,10 @@ import OfficeDetailed from '../pages/OfficeDetailed';
 import RegisterUser from '../pages/RegisterUser';
 import ArticleDetailed from '../pages/ArticleDetailed';
 
-// const UserRoutes = ({ children, ...rest }) => {
-//   const { isLoggedIn, isLoading } = useAuthContext();
-//   return (
-//     <Route
-//       {...rest}
-//       render={() =>
-//         isLoggedIn && !isLoading ? (
-//           <div>{children}</div>
-//         ) : (
-//           <Redirect to="/login" />
-//         )
-//       }
-//     />
-//   );
-// };
-
 const AdminRoutes = ({ children, ...rest }) => {
   const { isLoggedIn, isAdmin, isLoading } = useAuthContext();
   return (
     <Route
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
       render={() => isLoggedIn && isAdmin && !isLoading && children}
     />

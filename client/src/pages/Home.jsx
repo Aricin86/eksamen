@@ -1,6 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-import BannerImage from '../images/krystian-tambur-k7rZ8wTfABA-unsplash.jpg';
 import Banner from '../components/Banner';
 import {
   HomeWrapper,
@@ -10,20 +8,11 @@ import {
   TitleText,
 } from '../styled/Styled';
 
-// ? Bilde kan fjernes her
-const ImageHeader = styled(Banner)`
-  background-image: url(${BannerImage});
-  background-color: lightgray;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
-
 const Home = () => (
   <HomeWrapper>
-    <ImageHeader>
+    <Banner>
       <TitleText>Velkommen til LG Rørleggerservice AS</TitleText>
-    </ImageHeader>
+    </Banner>
     <OfficeSection href="/kontorer">
       <TitleText>Kontorer</TitleText>
     </OfficeSection>

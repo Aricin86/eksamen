@@ -2,6 +2,7 @@ import React from 'react';
 import Background from '../images/3819740.jpg';
 import { BackgroundImage } from '../styled/Styled';
 
+// BILDE HENTET FRA FREEPIK.COM
 const NoMatch = () => (
   <>
     <a href="/">
