@@ -23,7 +23,7 @@ const CardOffices = ({ search }) =>
       return data;
     }
   }).map((data) => (
-    <StyledLink to={`/detaljert/${data.officenumber}`} key={data.officenumber}>
+    <StyledLink to={`/kontor/${data.officenumber}`} key={data.officenumber}>
       <StyledCard>
         <StyledTitle>{data.place}</StyledTitle>
         <li>Rørlegger {data.locale}</li>

@@ -1,6 +1,6 @@
 import { OfficeList } from '../data/OfficeList';
 
-const FilterOffices = ({ search }) =>
+export const FilterOffices = ({ search }) =>
   OfficeList.filter((data) => {
     if (search === '') return data;
     if (
@@ -11,4 +11,11 @@ const FilterOffices = ({ search }) =>
     }
   });
 
-export default FilterOffices;
+//   export const FilterCategory = () => {
+// .filter((cat) => {
+//                 if (filterCat === null) return cat;
+//                 if (cat.category.toLowerCase() === filterCat) {
+//                   return cat;
+//                 }
+//               })
+//   }

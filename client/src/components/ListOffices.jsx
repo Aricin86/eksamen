@@ -1,16 +1,17 @@
 import React from 'react';
-import { useRouteMatch, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 
-import { OfficeList } from '../data/OfficeList';
-// import FilterOffices from '../hooks/filters';
+// import { FilterOffices } from '../hooks/filters';
 import { StyledList, StyledNumber, StyledListTitle } from '../styled/Styled';
+import { OfficeList } from '../data/OfficeList';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+  color: black;
 
   &:visited {
     color: black;
@@ -27,7 +28,7 @@ const ListOffices = ({ search }) =>
       return data;
     }
   }).map((data) => (
-    <StyledLink to={`/detaljert/${data.officenumber}`} key={data.officenumber}>
+    <StyledLink to={`/kontor/${data.officenumber}`} key={data.officenumber}>
       <StyledList>
         <StyledNumber>{data.officenumber}</StyledNumber>
         <StyledListTitle>Rørlegger {data.locale}</StyledListTitle>
