@@ -88,7 +88,7 @@ const ArticleList = () => {
       <section>
         {error && <p>{error}</p>}
         <div>
-          {loading && <div>Loading...</div>}
+          {loading && <p>Loading...</p>}
           {!articles && (
             <p>Det er for tiden ingen artikler i denne visningen.</p>
           )}

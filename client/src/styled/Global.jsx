@@ -4,16 +4,15 @@ import normalize from 'styled-normalize';
 export const GlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
-    max-width: 1400px;
     }
   html {
     background-color: #F5F4F5;
-    margin: 0 auto;
     font-family: 'Roboto', 'Helvetica', sans-serif;
-    /* height: 100vh; */
   }
   main {
     background-color: white;
+    margin: 0 auto;
+    max-width: 1400px;
     min-height: 100vh;
   }
   body {

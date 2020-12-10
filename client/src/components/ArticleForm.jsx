@@ -17,14 +17,13 @@ const initialState = {
 };
 
 const ArticleForm = () => {
-  const [status, setStatus] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  // const [status, setStatus] = useState(false);
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [currentAdmin, setCurrentAdmin] = useState('');
-  const [isSecret, setIsSecret] = useState(false);
+  const [isSecretValue, setIsSecretValue] = useState(false);
   const [categories, setCategories] = useState(null);
-  // const [auhtors, setuhtors] = useState(null);
   const authors = ['Lars Larsen', 'Gunn Gundersen', 'Simen Simensen'];
   const history = useHistory();
   const { user } = useAuthContext();
@@ -35,7 +34,10 @@ const ArticleForm = () => {
     validateArticleForm,
     submitable,
   } = useCustomHookForm({ initialState });
-  const [finalValues, setFinalValues] = useState([]);
+
+  const toggleModal = () => {
+    setShowModal((modalOpen) => !modalOpen);
+  };
 
   const capCategory = (word) => {
     if (typeof word !== 'string') {
@@ -45,91 +47,52 @@ const ArticleForm = () => {
   };
 
   const handleCheckboxChange = (event) => {
-    setIsSecret(event.target.checked);
+    setIsSecretValue(event.target.checked);
   };
 
   const submitForm = () => {
     const postData = async () => {
+      setLoading(true);
       try {
+        // TODO: Legg til bilde
+        values.admin = user.id;
+        values.isSecret = isSecretValue;
         const response = await create(values);
         if (response.status === 201) {
           setError(null);
           history.push('/fagartikler');
         }
       } catch (error) {
-        setError(error.message);
+        setError(error);
+      } finally {
+        setLoading(false);
       }
     };
     postData();
   };
 
-  const updateFinalValues = () => {
-    console.log(user.id);
-    const userId = user.id;
-    console.log(userId);
-
-    setCurrentAdmin('hello');
-    console.log(currentAdmin);
-
-    setFinalValues({ admin: user.id, ...initialState });
-    console.log(finalValues);
-
-    // console.log(values);
-    // submitForm();
-  };
-
-  // useEffect(() => {
-  //   const getAdmin = async () => {
-  //     setLoading(true);
-  //     const { data } = await getUserInfo();
-  //     if (!data.success) {
-  //       setError(error);
-  //     } else {
-  //       setAdmin(data.data);
-  //       setError(null);
-  //     }
-  //     setLoading(false);
-  //   };
-  //   getAdmin();
-  // });
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setAdmin(user.id);
-    updateFinalValues();
-    // console.log(admin);
     validateArticleForm();
   };
 
   useEffect(() => {
     if (submitable) {
-      updateFinalValues();
+      submitForm();
     }
   }, [submitable]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setLoading(true);
-  //     const { data } = await articleList();
-  //     if (!data.success) {
-  //       setError(error);
-  //     } else {
-  //       setArticles(data.data);
-  //       setError(null);
-  //     }
-  //     setLoading(false);
-  //   };
-  //   fetchData();
-  // }, []);
-
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const { data, error } = await categoryList();
       if (error) {
         setError(error);
       } else {
+        setError(null);
         setCategories(data);
       }
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -138,7 +101,7 @@ const ArticleForm = () => {
     <>
       <StyledArticleForm onSubmit={handleSubmit}>
         {error && <p>{error}</p>}
-        {/* {!admin && <p>Hei,! Hvilke endringer har du lyst til å gjøre?</p>} */}
+        {loading && <p>Loading...</p>}
         <label htmlFor="title">
           Tittel *
           <input
@@ -191,7 +154,7 @@ const ArticleForm = () => {
             </select>
           </label>
           {/* // TODO Fiks modal */}
-          <Button type="button" onClick={() => setStatus(true)}>
+          <Button type="button" onClick={() => setShowModal(true)}>
             Ny
           </Button>
         </div>
@@ -239,9 +202,7 @@ const ArticleForm = () => {
         )}
         <Button type="submit">Lagre</Button>
       </StyledArticleForm>
-      <div>
-        {status && <CategoryModal status={status} setStatus={setStatus} />}
-      </div>
+      {showModal && <CategoryModal toggleModal={toggleModal} />}
     </>
   );
 };
