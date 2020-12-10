@@ -29,22 +29,21 @@ const ArticleDetailedView = ({ error, loading, article }) => {
     return dateString;
   };
 
+  console.log(article.title);
+
   return (
     <StyledArticleDetailed>
-      {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      {!article && (
-        <p>
-          Artikkelen kunne ikke hentest fra databasen eller finnes ikke lenger.
-        </p>
-      )}
+      {loading && <p>Loading...</p>}
+      {article.title === undefined && <p>Denne artikkelen finnes ikke</p>}
+
       <ArticleDetailedHeader>
         <ArticleAuthor>Av {article.author}</ArticleAuthor>
         <ArticleDate>
           {ShowCustomDateTime(new Date(article.createdAt))}
         </ArticleDate>
       </ArticleDetailedHeader>
-      {/* <p>{article.ingress}</p> */}
+      <p>{article.ingress}</p>
       <p>{article.content}</p>
       <Button type="button">Slett</Button>
       <RegisterButton type="button">Rediger</RegisterButton>
@@ -57,7 +56,7 @@ ArticleDetailedView.propTypes = {
   loading: PropTypes.any,
   article: PropTypes.any,
   createdAt: PropTypes.any,
-  // ingress: PropTypes.any,
+  ingress: PropTypes.any,
   content: PropTypes.any,
 };
 

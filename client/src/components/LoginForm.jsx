@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory, useLocation, Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { login } from '../utils/authService';
 import { useAuthContext } from '../context/AuthProvider';
 import { StyledLoginForm, Button, RegisterButton } from '../styled/Styled';

@@ -6,7 +6,7 @@ import { categoryList } from '../utils/categoryService';
 import { useAuthContext } from '../context/AuthProvider';
 // import { getUserInfo } from '../utils/authService';
 import CategoryModal from './CategoryModal';
-import { StyledArticleForm, Button, DisabledButton } from '../styled/Styled';
+import { StyledArticleForm, Button } from '../styled/Styled';
 
 const initialState = {
   title: '',

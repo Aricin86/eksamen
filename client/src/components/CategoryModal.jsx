@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import useCustomHookFormCategory from '../hooks/useCustomHookFormCategory';
 import { create } from '../utils/categoryService';
 
@@ -77,9 +77,8 @@ const CategoryModal = ({ toggleModal }) => {
   );
 };
 
-// CategoryModal.propTypes = {
-//   status: PropTypes.bool,
-//   setStatus: PropTypes.func,
-// };
+CategoryModal.propTypes = {
+  toggleModal: PropTypes.any,
+};
 
 export default CategoryModal;
