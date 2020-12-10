@@ -28,7 +28,7 @@ const ListOffices = ({ search }) =>
       return data;
     }
   }).map((data) => (
-    <StyledLink to={`/detaljert/${data.officenumber}`} key={data.officenumber}>
+    <StyledLink to={`/kontor/${data.officenumber}`} key={data.officenumber}>
       <StyledList>
         <StyledNumber>{data.officenumber}</StyledNumber>
         <StyledListTitle>Rørlegger {data.locale}</StyledListTitle>

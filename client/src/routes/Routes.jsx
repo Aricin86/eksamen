@@ -64,8 +64,7 @@ const Routes = () => (
         <Route path="/kontorer">
           <Offices />
         </Route>
-        {/* // ! Skal være kontorer/:id */}
-        <Route path="/detaljert">
+        <Route path="/kontor/:id">
           <OfficeDetailed />
         </Route>
         <Route path="/fagartikler">
