@@ -444,7 +444,7 @@ export const MenuItemList = styled.ul`
   list-style: none;
   align-items: center;
 
-  @media screen and (max-width: 570px) {
+  @media screen and (max-width: 575px) {
     display: block;
     padding: 0;
   }
@@ -471,7 +471,7 @@ export const NavMenuItem = styled.li`
     }
   }
 
-  @media screen and (max-width: 680px) {
+  @media screen and (max-width: 685px) {
     padding: 0 10px;
   }
 `;
@@ -492,14 +492,11 @@ export const Logo = styled(NavLogInItem)`
   background-color: #fff;
   color: #333;
 
-  @media screen and (max-width: 570px) {
+  @media screen and (max-width: 575px) {
+    background-color: #f0f7f9;
     & > a {
       color: #333;
-
-      &.active {
-        color: #333;
-        padding-left: 10px;
-      }
+      padding-left: 10px;
     }
   }
 
