@@ -25,7 +25,6 @@ const ArticleList = () => {
   const filterCategory = (e) => {
     const chosenOption = e.target.value;
     setFilterCat(chosenOption);
-    console.log(`filter ${filterCat}`);
   };
 
   const capCategory = (word) => {

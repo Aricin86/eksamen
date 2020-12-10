@@ -29,7 +29,6 @@ const RegisterForm = () => {
   const submitForm = () => {
     const postData = async () => {
       try {
-        console.log(values);
         const response = await register(values);
 
         if (response.status === 200) {

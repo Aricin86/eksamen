@@ -47,8 +47,6 @@ const ArticleDetailedView = ({ article }) => {
     return dateString;
   };
 
-  console.log(article.title);
-
   return (
     <>
       <StyledArticleDetailed>
