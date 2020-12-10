@@ -89,7 +89,7 @@ export const StyledArticleListed = styled.article`
 
   & > h5 {
     float: right;
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-top: -25px;
   }
 
@@ -286,7 +286,7 @@ export const UserInput = styled.header`
 `;
 
 // * RegisterForm
-export const StyledRegisterMain = styled.main`
+export const StyledRegisterMain = styled.section`
   width: 40%;
   margin: 0 auto;
 `;
@@ -567,4 +567,20 @@ export const ArticleDetailedHeader = styled.header`
   width: 100%;
   vertical-align: top;
   margin-bottom: 30px;
+`;
+
+// * EMPLOYEES IN OFFICE DETAILED VIEW
+
+export const EmployeeSection = styled.section`
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-bottom: 40px;
+`;
+
+// export const EmployeeContainer = styled.div`
+// `;
+
+export const ProfilePicture = styled.img`
+  width: 100%;
 `;

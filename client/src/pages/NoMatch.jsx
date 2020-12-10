@@ -1,5 +1,5 @@
 import React from 'react';
-import Background from '../images/2451354.jpg';
+import Background from '../images/3819740.jpg';
 import { BackgroundImage } from '../styled/Styled';
 
 const NoMatch = () => (
@@ -10,8 +10,8 @@ const NoMatch = () => (
         alt="Bilde som viser at denne siden ikke finnes"
       />
     </a>
-    <a href="https://www.freepik.com/vectors/business">
-      Business vector created by pikisuperstar - www.freepik.com
+    <a href="https://www.freepik.com/vectors/web">
+      Web vector created by stories - www.freepik.com
     </a>
   </>
 );

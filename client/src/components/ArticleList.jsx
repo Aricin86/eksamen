@@ -1,42 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import {
-  Container,
-  Button,
-  StyledArticleListed,
-  ArticleHeader,
-} from '../styled/Styled';
+import { NavLink } from 'react-router-dom';
+import { Container, Button, ArticleHeader } from '../styled/Styled';
+
 import { articleList } from '../utils/articleService';
 import { categoryList } from '../utils/categoryService';
 import { useAuthContext } from '../context/AuthProvider';
 
+import ArticleFilterCategory from './ArticleFilterCategory';
+import ArticleSearchTitle from './ArticleSearchTitle';
+
 const ArticleList = () => {
   const [articles, setArticles] = useState(null);
+  const [filterCat, setFilterCat] = useState('All');
   const [categories, setCategories] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const { isLoggedIn, isAdmin } = useAuthContext();
   const [search, setSearch] = useState('');
 
+  const searchArticle = (e) => {
+    const keyword = e.target.value;
+    setSearch(keyword);
+  };
+
+  const filterCategory = (e) => {
+    const chosenOption = e.target.value;
+    setFilterCat(chosenOption);
+    console.log(`filter ${filterCat}`);
+  };
+
   const capCategory = (word) => {
     if (typeof word !== 'string') {
       return '';
     }
     return word.charAt(0).toUpperCase() + word.slice(1);
-  };
-
-  // const filtering = () => {
-  //   articleList.filter((data) => {
-  //     if (search === '') return data;
-  //     if (data.title.toLowerCase().includes(search)) {
-  //       return data;
-  //     }
-  //   });
-  // };
-
-  const searchArticle = (e) => {
-    const keyword = e.target.value;
-    setSearch(keyword);
   };
 
   useEffect(() => {
@@ -75,43 +72,33 @@ const ArticleList = () => {
           </Button>
         )}
         <input placeholder="Søk på tittel" onChange={searchArticle} />
-        <select>
+        <select onChange={filterCategory}>
+          <option value="All">Velg kategori</option>
           {categories &&
             categories.map((category) => (
-              <option key={category.id}>
+              <option value={category.category} key={category.id}>
                 {capCategory(category.category)}
               </option>
             ))}
         </select>
       </ArticleHeader>
+      {error && <p>{error}</p>}
+      {loading && <div>Loading...</div>}
+      {/* {categories && (
+        <>
+          <ArticleFilterCategory
+            filterCat={filterCat}
+            categories={categories}
+            articles={articles}
+          />
+        </>
+      )} */}
 
-      <section>
-        {error && <p>{error}</p>}
-        <div>
-          {loading && <div>Loading...</div>}
-          {!articles && (
-            <p>Det er for tiden ingen artikler i denne visningen.</p>
-          )}
-          {articles &&
-            articles
-              .filter((data) => {
-                if (search === '') return data;
-                if (data.title.toLowerCase().includes(search)) {
-                  return data;
-                }
-              })
-              .map((article) => (
-                <StyledArticleListed key={article.id}>
-                  <div id="bilde" />
-                  <Link to={`/fagartikkel/${article.id}`}>
-                    <h4>{article.title}</h4>
-                  </Link>
-                  <h5>{capCategory(article.category.category)}</h5>
-                  <p>{article.ingress}</p>
-                </StyledArticleListed>
-              ))}
-        </div>
-      </section>
+      {articles && (
+        <>
+          <ArticleSearchTitle search={search} articles={articles} />
+        </>
+      )}
     </Container>
   );
 };
