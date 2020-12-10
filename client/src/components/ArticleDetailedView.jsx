@@ -42,21 +42,20 @@ const ArticleDetailedView = ({ article }) => {
   const ShowCustomDateTime = (date) => {
     const dateString = `${`0${date.getDate()}`.slice(-2)}.${`0${
       date.getMonth() + 1
-    }`.slice(-2)}.${date.getFullYear()}`.slice(2);
+    }`.slice(-2)}.${date.getFullYear()}`.slice(-10, -2);
+
     return dateString;
   };
 
-  return (
-    <>
-      <StyledArticleDetailed>
-        {error && <p>{error}</p>}
-        {article === [] && (
-          <p>
-            Artikkelen kunne ikke hentest fra databasen eller finnes ikke
-            lenger.
-          </p>
-        )}
+  console.log(article.title);
 
+  return (
+
+    <StyledArticleDetailed>
+      {error && <p>{error}</p>}
+      {loading && <p>Loading...</p>}
+      {article.title === undefined && <p>Denne artikkelen finnes ikke</p>}
+      
         <ArticleDetailedHeader>
           <ArticleAuthor>Av {article.author}</ArticleAuthor>
           <ArticleDate>
@@ -89,7 +88,7 @@ const ArticleDetailedView = ({ article }) => {
 ArticleDetailedView.propTypes = {
   article: PropTypes.any,
   createdAt: PropTypes.any,
-  // ingress: PropTypes.any,
+  ingress: PropTypes.any,
   content: PropTypes.any,
 };
 
