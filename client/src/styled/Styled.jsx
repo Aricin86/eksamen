@@ -443,6 +443,11 @@ export const MenuItemList = styled.ul`
   margin: 0 auto;
   list-style: none;
   align-items: center;
+
+  @media screen and (max-width: 570px) {
+    display: block;
+    padding: 0;
+  }
 `;
 
 export const NavMenuItem = styled.li`
@@ -465,6 +470,10 @@ export const NavMenuItem = styled.li`
       color: #479eb9;
     }
   }
+
+  @media screen and (max-width: 680px) {
+    padding: 0 10px;
+  }
 `;
 
 export const NavLogInItem = styled(NavMenuItem)`
@@ -474,16 +483,32 @@ export const NavLogInItem = styled(NavMenuItem)`
     color: #fff;
 
     &.active {
-      color: #333;
+      color: #fff;
     }
   }
 `;
 
 export const Logo = styled(NavLogInItem)`
   background-color: #fff;
+  color: #333;
+
+  @media screen and (max-width: 570px) {
+    & > a {
+      color: #333;
+
+      &.active {
+        color: #333;
+        padding-left: 10px;
+      }
+    }
+  }
 
   & > a {
     color: #333;
+
+    &.active {
+      color: #333;
+    }
   }
 `;
 
