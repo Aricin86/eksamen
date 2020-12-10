@@ -110,3 +110,7 @@ dist
 .vscode-test
 
 .DS_Store
+
+# IDE settings
+.idea
+.vscode
