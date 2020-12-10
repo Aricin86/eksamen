@@ -538,51 +538,6 @@ export const ModalContent = styled.form`
   }
 `;
 
-// export const ModalStyled = styled.div`
-//   position: fixed;
-//   display: block;
-//   overflow: auto;
-//   width: 100%;
-//   height: 100%;
-//   top: 0;
-//   left: 0;
-//   background-color: rgba(0, 0, 0, 0.5);
-//   z-index: 10;
-// `;
-
-// export const ModalContent = styled.div`
-//   margin: 15% auto;
-//   background-color: white;
-//   border-radius: 0.25rem;
-//   width: 500px;
-//   height: 200px;
-//   padding: 2rem;
-//   position: relative;
-//   z-index: 999;
-
-//   & > label {
-//     margin-top: 30px;
-//     display: flex;
-//     font-weight: bold;
-//     align-items: center;
-//     text-align: right;
-
-//     & > input {
-//       margin: 5px 0 0 20px;
-//       padding: 0 10px;
-//       min-height: 50px;
-//       width: 300px;
-//       border: 1px solid #479eb9;
-//       border-radius: 5px;
-//     }
-//   }
-
-//   & > button {
-//     float: right;
-//     margin: 10px 34px;
-//   }
-// `;
-
 export const StyledOfficeDetailed = styled.section`
   margin: 40px auto;
   width: 90%;
