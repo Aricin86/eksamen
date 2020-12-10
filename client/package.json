@@ -57,5 +57,15 @@
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.2.0",
     "styled-normalize": "^8.0.7"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint . --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
