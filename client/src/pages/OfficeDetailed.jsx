@@ -28,7 +28,8 @@ const OfficeDetailed = () => {
         <h1>Kontor Rørlegger {office.locale}</h1>
       </Banner>
 
-      <OfficeDetailedView error={error} office={office} />
+      {error && <p>{error}</p>}
+      <OfficeDetailedView office={office} />
     </>
   );
 };

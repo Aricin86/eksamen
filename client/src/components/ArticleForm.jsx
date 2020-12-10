@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import useCustomHookForm from '../hooks/useCustomHookForm';
 import { create } from '../utils/articleService';
+import useCustomHookForm from '../hooks/useCustomHookForm';
 import { categoryList } from '../utils/categoryService';
 import { useAuthContext } from '../context/AuthProvider';
-// import { getUserInfo } from '../utils/authService';
 import CategoryModal from './CategoryModal';
 import { StyledArticleForm, Button } from '../styled/Styled';
 
@@ -18,8 +17,6 @@ const initialState = {
 
 const ArticleForm = () => {
   const [showModal, setShowModal] = useState(false);
-  // const [status, setStatus] = useState(false);
-
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isSecretValue, setIsSecretValue] = useState(false);
@@ -39,6 +36,18 @@ const ArticleForm = () => {
     setShowModal((modalOpen) => !modalOpen);
   };
 
+  const fetchCategoryData = async () => {
+    setLoading(true);
+    const { data, error } = await categoryList();
+    if (error) {
+      setError(error);
+    } else {
+      setError(null);
+      setCategories(data);
+    }
+    setLoading(false);
+  };
+
   const capCategory = (word) => {
     if (typeof word !== 'string') {
       return '';
@@ -54,7 +63,6 @@ const ArticleForm = () => {
     const postData = async () => {
       setLoading(true);
       try {
-        // TODO: Legg til bilde
         values.admin = user.id;
         values.isSecret = isSecretValue;
         const response = await create(values);
@@ -83,18 +91,7 @@ const ArticleForm = () => {
   }, [submitable]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const { data, error } = await categoryList();
-      if (error) {
-        setError(error);
-      } else {
-        setError(null);
-        setCategories(data);
-      }
-      setLoading(false);
-    };
-    fetchData();
+    fetchCategoryData();
   }, []);
 
   return (
@@ -138,12 +135,7 @@ const ArticleForm = () => {
         <div>
           <label htmlFor="category">
             Kategori *
-            <select
-              id="category"
-              name="category"
-              // values={values.category}
-              onChange={handleChange}
-            >
+            <select id="category" name="category" onChange={handleChange}>
               <option value="">Velg kategori</option>
               {categories &&
                 categories.map((category) => (
@@ -153,19 +145,13 @@ const ArticleForm = () => {
                 ))}
             </select>
           </label>
-          {/* // TODO Fiks modal */}
           <Button type="button" onClick={() => setShowModal(true)}>
             Ny
           </Button>
         </div>
         <label htmlFor="author">
           Forfatter *
-          <select
-            id="author"
-            name="author"
-            // values={values.author}
-            onChange={handleChange}
-          >
+          <select id="author" name="author" onChange={handleChange}>
             <option value="">Velg forfatter</option>
             {authors.map((name, i) => (
               <option key={i} value={name}>
@@ -180,20 +166,12 @@ const ArticleForm = () => {
             type="checkbox"
             id="isSecret"
             name="isSecret"
-            // values={isSecret}
             onChange={handleCheckboxChange}
           />
         </label>
         <label htmlFor="image">
           Last opp bilde
-          <input
-            type="file"
-            id="image"
-            name="image"
-            // values={values.image}
-            // onChange={handleChange}
-            accept="image"
-          />
+          <input type="file" id="image" name="image" accept="image" />
         </label>
         {errors && (
           <div>
@@ -202,7 +180,12 @@ const ArticleForm = () => {
         )}
         <Button type="submit">Lagre</Button>
       </StyledArticleForm>
-      {showModal && <CategoryModal toggleModal={toggleModal} />}
+      {showModal && (
+        <CategoryModal
+          toggleModal={toggleModal}
+          fetchCategoryData={fetchCategoryData}
+        />
+      )}
     </>
   );
 };

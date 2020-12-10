@@ -4,24 +4,16 @@ import { useHistory, Link } from 'react-router-dom';
 import { login } from '../utils/authService';
 import { useAuthContext } from '../context/AuthProvider';
 import { StyledLoginForm, Button, RegisterButton } from '../styled/Styled';
-// import RegisterForm from './RegisterForm';
 
 const LoginForm = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
   const history = useHistory();
-  const { setUser, isLoggedIn } = useAuthContext();
-  // const { state } = useLocation();
+  const { setUser } = useAuthContext();
   const { register, handleSubmit, formState } = useForm({
     mode: 'onBlur',
   });
-
-  // useEffect(() => {
-  //   if () {
-
-  //   }
-  // }, []);
 
   const onSubmit = async (credentials) => {
     const { data } = await login(credentials);
@@ -32,7 +24,9 @@ const LoginForm = () => {
       const expire = JSON.parse(window.atob(data.token.split('.')[1])).exp;
       setUser({ ...user, expire });
       setSuccess(true);
-      history.push('/');
+      setTimeout(() => {
+        history.push(`/`);
+      }, 2000);
     }
   };
 

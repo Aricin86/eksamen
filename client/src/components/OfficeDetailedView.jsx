@@ -4,10 +4,9 @@ import { EmployeeSection, StyledOfficeDetailed } from '../styled/Styled';
 import Banner from './Banner';
 import Employee from './Employee';
 
-const OfficeDetailedView = ({ error, office }) => (
+const OfficeDetailedView = ({ office }) => (
   <>
     <StyledOfficeDetailed>
-      {error && <p>{error}</p>}
       {!office && <p>Fant ingen infomasjon om dette kontoret.</p>}
       <h2>Velkommen til Rørlegger {office.locale}</h2>
       <p>{office.description}</p>
@@ -29,7 +28,6 @@ const OfficeDetailedView = ({ error, office }) => (
 );
 
 OfficeDetailedView.propTypes = {
-  error: PropTypes.string,
   office: PropTypes.any,
 };
 

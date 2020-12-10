@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { get } from '../utils/articleService';
 import Banner from '../components/Banner';
-import ArticleDetailedView from '../components/ArticleDetailedView';
+import ArticleForm from '../components/ArticleForm';
 
-const ArticleDetailed = () => {
+const EditArticle = () => {
   const { id } = useParams();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
@@ -38,9 +38,9 @@ const ArticleDetailed = () => {
 
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      <ArticleDetailedView article={article} />
+      <ArticleForm />
     </>
   );
 };
 
-export default ArticleDetailed;
+export default EditArticle;

@@ -16,10 +16,6 @@ export const Button = styled.button`
   }
 `;
 
-export const DisabledButton = styled(Button)`
-  background: ${({ theme: { colors } }) => colors.background};
-`;
-
 export const RegisterButton = styled(Button)`
   background: #d0f1d4;
   color: #1c1c21;
@@ -560,6 +556,28 @@ export const ModalContent = styled.form`
   }
 `;
 
+// * DELETE PROMPT MODAL
+export const PromptStyled = styled(ModalStyled)`
+  margin: -25% 25%;
+`;
+
+export const PromptContent = styled.form`
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  & > p {
+    grid-column: 1 / 3;
+    text-align: center;
+  }
+
+  & > button {
+    margin-top: 20px;
+    justify-self: center;
+  }
+`;
+
+// * Styled details
 export const StyledOfficeDetailed = styled.section`
   margin: 40px auto;
   width: 90%;
@@ -572,6 +590,10 @@ export const StyledOfficeDetailed = styled.section`
 export const StyledArticleDetailed = styled.section`
   margin: 40px auto;
   width: 90%;
+
+  & > p {
+    word-wrap: break-word;
+  }
 
   & > button {
     margin-right: 10px;

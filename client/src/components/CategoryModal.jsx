@@ -9,7 +9,7 @@ const initialState = {
   category: '',
 };
 
-const CategoryModal = ({ toggleModal }) => {
+const CategoryModal = ({ toggleModal, fetchCategoryData }) => {
   const [error, setError] = useState(null);
   const {
     values,
@@ -29,6 +29,7 @@ const CategoryModal = ({ toggleModal }) => {
         const response = await create(values);
         if (response.status === 201) {
           setError(null);
+          fetchCategoryData();
           toggleModal(false);
         }
       } catch (error) {
