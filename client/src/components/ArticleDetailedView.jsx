@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { remove } from '../utils/articleService';
@@ -39,27 +39,16 @@ const ArticleDetailedView = ({ article }) => {
     deleteArticle();
   };
 
-  // const handleEdit = () => {
-  //   validateRegistrationForm();
-  //  Link til ArticleForm og send med id (eller hele artikkelen)
-  // };
-
   const ShowCustomDateTime = (date) => {
     const dateString = `${`0${date.getDate()}`.slice(-2)}.${`0${
       date.getMonth() + 1
     }`.slice(-2)}.${date.getFullYear()}`.slice(2);
-    // ("0" + date.getDate()).slice(-2) + "." + ("0" + (date.getMonth() + 1)).slice(-2) + "." + date.getFullYear().slice(2);
     return dateString;
   };
 
   return (
     <>
       <StyledArticleDetailed>
-        {/* {error && <Toast type="error" message={error} />}
-        {(article === []) && (
-          <Toast type="info" message="Artikkelen kunne ikke hentest fra databasen eller finnes ikke
-          lenger." />
-        )} */}
         {error && <p>{error}</p>}
         {article === [] && (
           <p>
@@ -81,9 +70,8 @@ const ArticleDetailedView = ({ article }) => {
             <Button type="button" onClick={() => setShowDeletePrompt(true)}>
               Slett
             </Button>
-            <RegisterButton as={NavLink} to={`/rediger/${article.id}`}>
-              Rediger
-            </RegisterButton>
+            {/* <RegisterButton as={NavLink} to={`/rediger/${article.id}`}> */}
+            <RegisterButton>Rediger</RegisterButton>
           </>
         )}
       </StyledArticleDetailed>

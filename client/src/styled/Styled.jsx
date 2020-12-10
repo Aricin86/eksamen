@@ -16,15 +16,6 @@ export const Button = styled.button`
   }
 `;
 
-export const DisabledButton = styled(Button)`
-  background: lightgray;
-  color: #1c1c21;
-
-  &:hover {
-    background: lightgray;
-  }
-`;
-
 export const RegisterButton = styled(Button)`
   background: #d0f1d4;
   color: #1c1c21;
@@ -599,6 +590,10 @@ export const StyledOfficeDetailed = styled.section`
 export const StyledArticleDetailed = styled.section`
   margin: 40px auto;
   width: 90%;
+
+  & > p {
+    word-wrap: break-word;
+  }
 
   & > button {
     margin-right: 10px;

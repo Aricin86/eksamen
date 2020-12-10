@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import useCustomHookForm from '../hooks/useCustomHookForm';
 import { create } from '../utils/articleService';
+import useCustomHookForm from '../hooks/useCustomHookForm';
 import { categoryList } from '../utils/categoryService';
 import { useAuthContext } from '../context/AuthProvider';
 import CategoryModal from './CategoryModal';
-import { StyledArticleForm, Button, DisabledButton } from '../styled/Styled';
+import { StyledArticleForm, Button } from '../styled/Styled';
 
 const initialState = {
   title: '',
@@ -16,7 +16,6 @@ const initialState = {
 };
 
 const ArticleForm = () => {
-  // const [initialSetup, setInitialSetup] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -64,7 +63,6 @@ const ArticleForm = () => {
     const postData = async () => {
       setLoading(true);
       try {
-        // TODO: Legg til bilde
         values.admin = user.id;
         values.isSecret = isSecretValue;
         const response = await create(values);
@@ -84,7 +82,6 @@ const ArticleForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     validateArticleForm();
-    console.log(values);
   };
 
   useEffect(() => {
@@ -97,20 +94,6 @@ const ArticleForm = () => {
     fetchCategoryData();
   }, []);
 
-  // let initialTitle = aTitle;
-  // const updateInputFields = () => {
-  //   initialTitle = aTitle;
-  //   // initialState.title = article.title;
-  // };
-
-  // useEffect(() => {
-  //   if (initialSetup) {
-  //     console.log(aTitle);
-  //     updateInputFields();
-  //     setInitialSetup(false);
-  //   }
-  // }, []);
-
   return (
     <>
       <StyledArticleForm onSubmit={handleSubmit}>
@@ -122,7 +105,6 @@ const ArticleForm = () => {
             type="text"
             name="title"
             id="title"
-            // value={aTitle}
             values={values.title}
             onChange={handleChange}
             placeholder="Tittel"
@@ -189,23 +171,13 @@ const ArticleForm = () => {
         </label>
         <label htmlFor="image">
           Last opp bilde
-          <input
-            type="file"
-            id="image"
-            name="image"
-            // values={values.image}
-            // onChange={handleChange}
-            accept="image"
-          />
+          <input type="file" id="image" name="image" accept="image" />
         </label>
         {errors && (
           <div>
             <p>{errors}</p>
           </div>
         )}
-        {/* // TODO Disable lagre-knappen så lenge det ikke er validert */}
-        {/* {!submitable && <DisabledButton type="button">Lagre</DisabledButton>} */}
-        {/* {submitable && <Button type="submit">Lagre</Button>} */}
         <Button type="submit">Lagre</Button>
       </StyledArticleForm>
       {showModal && (

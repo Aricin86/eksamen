@@ -9,7 +9,6 @@ const EditArticle = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [article, setArticle] = useState([]);
-  // const [articleTitle, setArticleTitle] = useState('');
 
   useEffect(() => {
     if (id) {
@@ -19,7 +18,6 @@ const EditArticle = () => {
           const { data } = await get(id);
           if (data.success) {
             setArticle(data.data);
-            // setArticleTitle(article.title);
             setError('');
           }
         } catch (error) {

@@ -1,27 +1,19 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory, useLocation, Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { login } from '../utils/authService';
 import { useAuthContext } from '../context/AuthProvider';
 import { StyledLoginForm, Button, RegisterButton } from '../styled/Styled';
-// import RegisterForm from './RegisterForm';
 
 const LoginForm = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
   const history = useHistory();
-  const { setUser, isLoggedIn } = useAuthContext();
-  // const { state } = useLocation();
+  const { setUser } = useAuthContext();
   const { register, handleSubmit, formState } = useForm({
     mode: 'onBlur',
   });
-
-  // useEffect(() => {
-  //   if () {
-
-  //   }
-  // }, []);
 
   const onSubmit = async (credentials) => {
     const { data } = await login(credentials);
