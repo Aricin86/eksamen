@@ -3,6 +3,8 @@
 ### Gruppe 13 - Åse Ulriksen Rørmark (174318) og Marte Olavsdatter (153507)
 
 ---
+## Trello for utviklingen: https://trello.com/b/802WiVsI
+---
 
 # Oppstart
 
